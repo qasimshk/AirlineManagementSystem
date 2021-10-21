@@ -5,7 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Abstractions\Repositories\" />
+    <Folder Include="Application\Mapping\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Application\Models\" />
+    <Folder Include="Persistance\Entities\" />
+    <Folder Include="Persistance\Repositories\" />
   </ItemGroup>
 
 </Project>

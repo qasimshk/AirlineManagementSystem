@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Gateway", "01 Gateway", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Services", "02 Services", "{C483FEB5-41D4-46AA-99DF-E88F98F1D118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.api", "airline.management.api\airline.management.api.csproj", "{4C7F28FE-B1A3-4D9F-A238-FC1757EEA1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.management.api", "airline.management.api\airline.management.api.csproj", "{4C7F28FE-B1A3-4D9F-A238-FC1757EEA1C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orchestrator", "Orchestrator", "{1854F311-D2BE-49DB-BB50-1AD04EFE1BA0}"
 EndProject
@@ -27,25 +27,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{52C3B0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{5A658984-A806-4C20-B72F-7850E1C870D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.customers.service", "airline.customers.service\airline.customers.service.csproj", "{6188DCD7-13E5-4F16-86A1-D4B930B06E6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.customers.service", "airline.customers.service\airline.customers.service.csproj", "{6188DCD7-13E5-4F16-86A1-D4B930B06E6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.notification.service", "airline.notification.service\airline.notification.service.csproj", "{E2F21F4F-4B83-4725-A364-312247246512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.notification.service", "airline.notification.service\airline.notification.service.csproj", "{E2F21F4F-4B83-4725-A364-312247246512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.orchestrator.service", "airline.orchestrator.service\airline.orchestrator.service.csproj", "{CA66FC44-A1C0-4C85-8E7A-10FDED1DD067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.orchestrator.service", "airline.orchestrator.service\airline.orchestrator.service.csproj", "{CA66FC44-A1C0-4C85-8E7A-10FDED1DD067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.orders.service", "airline.orders.service\airline.orders.service.csproj", "{18285A7A-9D1E-446A-AB9A-B49A7BFBC928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.orders.service", "airline.orders.service\airline.orders.service.csproj", "{18285A7A-9D1E-446A-AB9A-B49A7BFBC928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.payment.service", "airline.payment.service\airline.payment.service.csproj", "{1D3B3D82-64B4-46CE-A362-B7756573A2BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.payment.service", "airline.payment.service\airline.payment.service.csproj", "{1D3B3D82-64B4-46CE-A362-B7756573A2BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.flightdetail.api", "airline.flightdetail.api\airline.flightdetail.api.csproj", "{56677724-70CF-452A-B720-D72128831973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.flightdetail.api", "airline.flightdetail.api\airline.flightdetail.api.csproj", "{56677724-70CF-452A-B720-D72128831973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.discount.api", "airline.discount.api\airline.discount.api.csproj", "{6ECED273-6282-403C-B710-194859C451FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.discount.api", "airline.discount.api\airline.discount.api.csproj", "{6ECED273-6282-403C-B710-194859C451FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Library", "03 Library", "{9AA31426-8EDB-44E2-ADAE-834AD9C133D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{C1369514-769B-4E34-A5B4-5BFC1A5F6443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.sharedkernal", "airline.management.sharedkernal\airline.management.sharedkernal.csproj", "{24614C09-2C60-45F2-AB30-48CAB4D03B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.management.sharedkernal", "airline.management.sharedkernal\airline.management.sharedkernal.csproj", "{24614C09-2C60-45F2-AB30-48CAB4D03B72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.abstractions", "airline.management.abstractions\airline.management.abstractions.csproj", "{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FlightDetails.database", "FlightDetails.database\FlightDetails.database.sqlproj", "{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,16 @@ Global
 		{24614C09-2C60-45F2-AB30-48CAB4D03B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24614C09-2C60-45F2-AB30-48CAB4D03B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24614C09-2C60-45F2-AB30-48CAB4D03B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +127,8 @@ Global
 		{6ECED273-6282-403C-B710-194859C451FF} = {74480277-9F66-43C4-A3A6-554EA500D7CB}
 		{9AA31426-8EDB-44E2-ADAE-834AD9C133D3} = {78865F3F-9A8C-4B63-8859-FF86421AED6A}
 		{24614C09-2C60-45F2-AB30-48CAB4D03B72} = {9AA31426-8EDB-44E2-ADAE-834AD9C133D3}
+		{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE} = {9AA31426-8EDB-44E2-ADAE-834AD9C133D3}
+		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DDD445B-D2D3-4747-B048-F5E985150EEE}
