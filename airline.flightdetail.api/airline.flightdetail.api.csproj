@@ -2,21 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>c3bd6811-50e4-4750-8982-0ca2a7427202</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Scrutor" Version="3.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Abstractions\Repositories\" />
-    <Folder Include="Application\Mapping\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Application\Models\" />
-    <Folder Include="Persistance\Entities\" />
-    <Folder Include="Persistance\Repositories\" />
+    <ProjectReference Include="..\airline.management.sharedkernal\airline.management.sharedkernal.csproj" />
   </ItemGroup>
 
 </Project>

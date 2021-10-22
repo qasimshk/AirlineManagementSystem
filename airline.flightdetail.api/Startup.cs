@@ -1,20 +1,23 @@
+using airline.flightdetail.api.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace airline.flightdetail.api
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
                 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -24,6 +27,14 @@ namespace airline.flightdetail.api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Flight Detail", Version = "v1" });
             });
+
+            services.Scan(scan => scan
+                .FromAssemblyOf<FlightRepository>()
+                .AddClasses()
+                .AsImplementedInterfaces()
+                .WithTransientLifetime());
+
+            services.AddScoped<IDbConnection>(db => new SqlConnection(_configuration.GetConnectionString("DefaultConnection")));
         }
 
         

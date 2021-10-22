@@ -68,5 +68,6 @@
     <Build Include="dbo\Tables\Airport.sql" />
     <Build Include="dbo\Tables\Flight.sql" />
     <Build Include="dbo\Stored Procedures\sp_GetFlightByDestination.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetAllFlights.sql" />
   </ItemGroup>
 </Project>
