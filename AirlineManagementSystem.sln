@@ -47,9 +47,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{C1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.management.sharedkernal", "airline.management.sharedkernal\airline.management.sharedkernal.csproj", "{24614C09-2C60-45F2-AB30-48CAB4D03B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.abstractions", "airline.management.abstractions\airline.management.abstractions.csproj", "{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.management.abstractions", "airline.management.abstractions\airline.management.abstractions.csproj", "{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FlightDetails.database", "FlightDetails.database\FlightDetails.database.sqlproj", "{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.application", "airline.management.application\airline.management.application.csproj", "{F5283E64-54CA-4FAF-BF22-2BB8AA5AF3F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.domain", "airline.management.domain\airline.management.domain.csproj", "{259460D7-604C-4BE0-9743-EF8A38FAE5D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "airline.management.infrastructure", "airline.management.infrastructure\airline.management.infrastructure.csproj", "{85BF4468-DB8A-40D5-8304-8FB4EB160A1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +109,18 @@ Global
 		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F5283E64-54CA-4FAF-BF22-2BB8AA5AF3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5283E64-54CA-4FAF-BF22-2BB8AA5AF3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5283E64-54CA-4FAF-BF22-2BB8AA5AF3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5283E64-54CA-4FAF-BF22-2BB8AA5AF3F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259460D7-604C-4BE0-9743-EF8A38FAE5D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259460D7-604C-4BE0-9743-EF8A38FAE5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259460D7-604C-4BE0-9743-EF8A38FAE5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259460D7-604C-4BE0-9743-EF8A38FAE5D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BF4468-DB8A-40D5-8304-8FB4EB160A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BF4468-DB8A-40D5-8304-8FB4EB160A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BF4468-DB8A-40D5-8304-8FB4EB160A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BF4468-DB8A-40D5-8304-8FB4EB160A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,6 +147,9 @@ Global
 		{24614C09-2C60-45F2-AB30-48CAB4D03B72} = {9AA31426-8EDB-44E2-ADAE-834AD9C133D3}
 		{2B7DF4ED-FD3D-4FDF-B752-8F25570E5EAE} = {9AA31426-8EDB-44E2-ADAE-834AD9C133D3}
 		{AFF9A82B-134C-4226-BAB0-7DC6FEC283B3} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
+		{F5283E64-54CA-4FAF-BF22-2BB8AA5AF3F5} = {68FE8B27-FA91-4CB4-A1BF-8D3CF7C9283E}
+		{259460D7-604C-4BE0-9743-EF8A38FAE5D8} = {68FE8B27-FA91-4CB4-A1BF-8D3CF7C9283E}
+		{85BF4468-DB8A-40D5-8304-8FB4EB160A1E} = {68FE8B27-FA91-4CB4-A1BF-8D3CF7C9283E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DDD445B-D2D3-4747-B048-F5E985150EEE}

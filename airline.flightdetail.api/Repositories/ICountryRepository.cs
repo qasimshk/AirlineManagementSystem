@@ -6,6 +6,6 @@ namespace airline.flightdetail.api.Repositories
 {
     public interface ICountryRepository
     {
-        public Task<IEnumerable<CountryDetailsDto>> Get();
+        Task<IEnumerable<CountryDetailsDto>> Get();
     }
 }
