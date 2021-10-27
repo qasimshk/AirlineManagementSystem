@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:9046",
-      "sslPort": 44312
+      "applicationUrl": "http://localhost:27135",
+      "sslPort": 44340
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "airline.discount.api": {
+    "database.migration.app": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
