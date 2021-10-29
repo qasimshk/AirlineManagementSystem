@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
-using System.Reflection;
 
 namespace airline.orchestrator.service
 {
@@ -24,8 +23,7 @@ namespace airline.orchestrator.service
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseWindowsService()
-                .ConfigureAppConfiguration(config => config.AddUserSecrets(Assembly.GetExecutingAssembly()))
+                .UseWindowsService()                
                 .ConfigureHostConfiguration(cfg =>
                  {
                      cfg.SetBasePath(Directory.GetCurrentDirectory());

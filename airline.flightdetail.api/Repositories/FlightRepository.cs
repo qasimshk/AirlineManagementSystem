@@ -21,12 +21,37 @@ namespace airline.flightdetail.api.Repositories
             return await _db.QueryAsync<FlightDetailsDto>("sp_GetAllFlights", commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<FlightDetailsDto> GetFlightDetails(string departure, string arrival)
+        public async Task<IEnumerable<FlightDetailsDto>> GetFlightDetails(string departure, string arrival)
         {
-            var details = await _db.QueryAsync<FlightDetailsDto>("sp_GetFlightByDestination", new 
+            var details = await _db.QueryAsync<FlightDetailsDto>(@"SELECT FlightNo	
+                          ,DepartureAirport	
+                          ,DepartureCountry	
+                          ,DepartureCountryISO	
+                          ,ArrivalAirport	
+                          ,ArrivalCountry	
+                          ,ArrivalCountryISO	
+                          ,Distance	
+                          ,ModelNumber	
+                          ,ManufacturerName	
+                          ,PlaneRange	
+                          ,CruiseSpeed 
+                          FROM vw_FlightDetails 
+                          WHERE DepartureCountryISO=@Departure 
+                          AND ArrivalCountryISO=@Arrival",
+                          new
+                          {
+                              Departure = departure.ToUpper(),
+                              Arrival = arrival.ToUpper()
+                          }, commandType: CommandType.Text);
+
+            return details.ToList();
+        }
+
+        public async Task<FlightDetailsDto> GetFlightDetailsByFlightNumber(string flightNumber)
+        {
+            var details = await _db.QueryAsync<FlightDetailsDto>("sp_GetFlightByFlightNumber", new
             {
-                Departure = departure.ToUpper(),
-                Arrival = arrival.ToUpper()
+                FlightNumber = flightNumber
             }, commandType: CommandType.StoredProcedure);
 
             return details.SingleOrDefault();

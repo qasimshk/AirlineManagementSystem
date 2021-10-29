@@ -1,11 +1,9 @@
-﻿{
+{
   "profiles": {
     "airline.orchestrator.service": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
-      "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
-      }
+      "commandLineArgs": "environment=Development",
+      "dotnetRunMessages": "true"
     }
   }
 }

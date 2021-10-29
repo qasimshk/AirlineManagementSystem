@@ -8,6 +8,7 @@ namespace airline.management.application.Abstractions.Services
     {
         Task<List<CountryDetailsDto>> GetAllCountry();
         Task<List<FlightDetailsDto>> GetAvailableFlights();
-        Task<FlightDetailsDto> GetFlightByDestination(string departure, string arrival);
+        Task<List<FlightDetailsDto>> GetFlightByDestination(string departure, string arrival);
+        Task<FlightDetailsDto> GetFlightByFlightNumber(string flightNumber);
     }
 }

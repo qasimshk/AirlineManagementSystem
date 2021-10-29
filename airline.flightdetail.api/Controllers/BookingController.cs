@@ -46,5 +46,21 @@ namespace airline.flightdetail.api.Controllers
 
             return details is null ? NotFound("No flights found for specified destination") : Ok(details);
         }
+
+        [HttpGet("SearchFlight/{FlightNumber}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadGateway)]
+        [ProducesResponseType(typeof(FlightDetailsDto), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> SearchFlight(string flightNumber)
+        {
+            if (string.IsNullOrEmpty(flightNumber))
+            {
+                return BadRequest("Please provide flight number");
+            }
+
+            var details = await _flightRepository.GetFlightDetailsByFlightNumber(flightNumber);
+
+            return details is null ? NotFound("No flights found for specified flight number") : Ok(details);
+        }
     }
 }

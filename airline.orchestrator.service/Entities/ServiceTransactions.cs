@@ -8,7 +8,8 @@ namespace airline.orchestrator.service.Entities
         public Guid CorrelationId { get; set; }
         public string CurrentState { get; set; }
         public string CustomerId { get; set; }
-        public string OrderId { get; set; }
+        public string OrderId { get; set; }        
+        public string TicketNumber { get; set; }
         public string PaymentId { get; set; }
         public double TicketPrice { get; set; }
         public string JsonOrderRequest { get; set; }        

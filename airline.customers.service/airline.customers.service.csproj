@@ -16,4 +16,8 @@
     <ProjectReference Include="..\airline.management.abstractions\airline.management.abstractions.csproj" />
     <ProjectReference Include="..\airline.management.sharedkernal\airline.management.sharedkernal.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Persistence\Migrations\" />
+  </ItemGroup>
 </Project>

@@ -18,12 +18,12 @@ namespace airline.orchestrator.service
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             await _bus.StartAsync(stoppingToken);
-            Console.WriteLine($"Orchestrator Service has started at: { DateTimeOffset.Now}");            
+            Console.WriteLine($"--> Orchestrator Service has started at: { DateTimeOffset.Now}");            
         }
 
         public override async Task StopAsync(CancellationToken stoppingToken)
         {
-            Console.WriteLine($"Orchestrator Service has stopped at: { DateTimeOffset.Now}");
+            Console.WriteLine($"--> Orchestrator Service has stopped at: { DateTimeOffset.Now}");
             await _bus.StopAsync(stoppingToken);
         }
     }

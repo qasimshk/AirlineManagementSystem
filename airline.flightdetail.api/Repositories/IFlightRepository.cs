@@ -7,7 +7,7 @@ namespace airline.flightdetail.api.Repositories
     public interface IFlightRepository
     {
         Task<IEnumerable<FlightDetailsDto>> GetAllFlights();
-
-        Task<FlightDetailsDto> GetFlightDetails(string departure, string arrival);        
+        Task<IEnumerable<FlightDetailsDto>> GetFlightDetails(string departure, string arrival);
+        Task<FlightDetailsDto> GetFlightDetailsByFlightNumber(string flightNumber);
     }
 }

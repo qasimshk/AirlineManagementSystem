@@ -1,7 +1,10 @@
-﻿using airline.management.application.Models;
+﻿using airline.management.application.Commands.SubmitOrder;
+using airline.management.application.Models;
 using airline.management.application.Queries.GetAvailableFlights;
 using airline.management.application.Queries.GetCountries;
 using airline.management.application.Queries.GetFlightByDestination;
+using airline.management.application.Queries.GetOrderState;
+using airline.management.application.Queries.GetTicketDetails;
 using airline.management.sharedkernal.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -27,12 +30,37 @@ namespace airline.management.api.Controllers
         }
 
         [HttpGet("Destination/{departure}/To/{arrival}")]
-        [ProducesResponseType(typeof(FlightDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<FlightDetailsDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Destination(string departure, string arrival)
+        public async Task<IActionResult> Destination([FromRoute] string departure, [FromRoute] string arrival)
         {
             return Ok(await _mediator.Send(new GetFlightByDestinationQuery(departure, arrival)));
+        }
+
+        [HttpGet("Order/State/{orderNumber}")]
+        [ProducesResponseType(typeof(OrderStateDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> OrderState([FromRoute] string orderNumber)
+        {
+            return Ok(await _mediator.Send(new GetOrderStateQuery(orderNumber)));
+        }
+
+        [HttpGet("Ticket/{ticketNumber}/{orderNumber}")]
+        [ProducesResponseType(typeof(CustomerTicketDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Ticket([FromRoute] string ticketNumber, string orderNumber)
+        {
+            return Ok(await _mediator.Send(new GetTicketDetailsQuery(ticketNumber, orderNumber)));
+        }
+
+        [HttpPost("BookingTicket")]
+        [ProducesResponseType(typeof(OrderSubmittedDto), (int)HttpStatusCode.OK)]        
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> BookingTicket([FromBody] SubmitOrderCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

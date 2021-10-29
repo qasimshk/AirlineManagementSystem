@@ -1,4 +1,5 @@
 using airline.management.api.Extensions;
+using airline.management.sharedkernal.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,9 +21,11 @@ namespace airline.management.api
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddServiceConfiguration(_configuration, applicationName)
+                .AddApplicationSettings(_configuration, applicationName)
+                .AddServiceConfiguration(_configuration)
                 .AddInternalServices()
-                .AddServiceDependencies();
+                .AddServiceDependencies()                
+                .AddEventBusService();
         }
 
         

@@ -4,9 +4,7 @@ using System;
 namespace airline.management.abstractions.Orders
 {
     public interface ICreateFlightTicketEvent : IBaseEvent
-    {
-        Guid OrderId { get; set; }
-        string TicketNumber { get; set; }
+    {   
         string FlightNumber { get; set; }
         string DepartureAirport { get; set; }
         string DepartureCountry { get; set; }

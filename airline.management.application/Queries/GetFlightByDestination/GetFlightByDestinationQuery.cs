@@ -1,9 +1,10 @@
 ﻿using airline.management.application.Models;
 using MediatR;
+using System.Collections.Generic;
 
 namespace airline.management.application.Queries.GetFlightByDestination
 {
-    public class GetFlightByDestinationQuery : IRequest<FlightDetailsDto> 
+    public class GetFlightByDestinationQuery : IRequest<List<FlightDetailsDto>>
     {
         public GetFlightByDestinationQuery(string departure, string arrival)
         {

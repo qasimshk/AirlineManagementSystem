@@ -29,9 +29,15 @@ namespace airline.management.infrastructure.Services
             return await response.ReadContentAs<List<FlightDetailsDto>>();
         }
 
-        public async Task<FlightDetailsDto> GetFlightByDestination(string departure, string arrival)
+        public async Task<List<FlightDetailsDto>> GetFlightByDestination(string departure, string arrival)
         {
             var response = await _httpClient.GetAsync(FlightDetailOperations.GetAvailableFlightByDestination(departure, arrival));
+            return await response.ReadContentAs<List<FlightDetailsDto>>();
+        }
+
+        public async Task<FlightDetailsDto> GetFlightByFlightNumber(string flightNumber)
+        {
+            var response = await _httpClient.GetAsync(FlightDetailOperations.GetAvailableFlightByFlightNumber(flightNumber));
             return await response.ReadContentAs<FlightDetailsDto>();
         }
     }

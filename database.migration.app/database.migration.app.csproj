@@ -14,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\airline.customers.service\airline.customers.service.csproj" />
     <ProjectReference Include="..\airline.management.sharedkernal\airline.management.sharedkernal.csproj" />
+    <ProjectReference Include="..\airline.notification.service\airline.notification.service.csproj" />
     <ProjectReference Include="..\airline.orchestrator.service\airline.orchestrator.service.csproj" />
+    <ProjectReference Include="..\airline.orders.service\airline.orders.service.csproj" />
+    <ProjectReference Include="..\airline.payment.service\airline.payment.service.csproj" />
   </ItemGroup>
 
 </Project>

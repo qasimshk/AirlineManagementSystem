@@ -1,5 +1,8 @@
+using airline.customers.service.Persistence.Context;
 using airline.management.sharedkernal.Extensions;
 using airline.orchestrator.service.Persistence.Context;
+using airline.orders.service.Persistence.Context;
+using airline.payment.service.Persistence.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,9 +30,18 @@ namespace database.migration.app
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "database.migration.app", Version = "v1" });
             });
-            
+
             // Orchestrator
-            services.AddApplicationDbContext<StateDbContext>(Configuration);
+            //services.AddApplicationDbContext<StateDbContext>(Configuration);
+
+            // Customer
+            //services.AddApplicationDbContext<CustomerDbContext>(Configuration);
+
+            // Orders
+            //services.AddApplicationDbContext<OrderDbContext>(Configuration);
+
+            // Payments
+            services.AddApplicationDbContext<PaymentDbContext>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

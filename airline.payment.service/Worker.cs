@@ -1,8 +1,6 @@
+using MassTransit;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,20 +8,23 @@ namespace airline.payment.service
 {
     public class Worker : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
+        private readonly IBusControl _bus;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(IBusControl bus)
         {
-            _logger = logger;
+            _bus = bus;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
+            await _bus.StartAsync(stoppingToken);
+            Console.WriteLine($"--> Payment Service has started at: { DateTimeOffset.Now}");
+        }
+
+        public override async Task StopAsync(CancellationToken stoppingToken)
+        {
+            Console.WriteLine($"--> Payment Service has stopped at: { DateTimeOffset.Now}");
+            await _bus.StopAsync(stoppingToken);
         }
     }
 }

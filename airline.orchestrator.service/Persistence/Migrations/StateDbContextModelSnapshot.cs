@@ -49,6 +49,9 @@ namespace airline.orchestrator.service.Persistence.Migrations
                     b.Property<string>("PaymentId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TicketNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("TicketPrice")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("float")

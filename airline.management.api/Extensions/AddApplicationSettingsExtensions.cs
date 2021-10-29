@@ -9,7 +9,7 @@ namespace airline.management.api.Extensions
 {
     public static class AddApplicationSettingsExtensions
     {
-        public static IServiceCollection AddServiceConfiguration(this IServiceCollection services, IConfiguration configuration, string applicationName)
+        public static IServiceCollection AddApplicationSettings(this IServiceCollection services, IConfiguration configuration, string applicationName)
         {
             services.AddControllers(options =>
                    options.Filters.Add<ApiExceptionFilterAttribute>())

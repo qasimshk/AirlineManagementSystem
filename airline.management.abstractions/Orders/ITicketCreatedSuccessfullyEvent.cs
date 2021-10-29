@@ -5,6 +5,7 @@ namespace airline.management.abstractions.Orders
 {
     public interface ITicketCreatedSuccessfullyEvent : IBaseEvent
     {
-        Guid OrderId { get; set; }
+        Guid OrderId { get; set; }        
+        string TicketNumber { get; set; }
     }
 }

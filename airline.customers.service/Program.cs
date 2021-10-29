@@ -1,3 +1,5 @@
+using airline.customers.service.Extensions;
+using airline.customers.service.Persistence.Context;
 using airline.management.sharedkernal.Common;
 using airline.management.sharedkernal.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -5,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
-using System.Reflection;
 
 namespace airline.customers.service
 {
@@ -23,8 +24,7 @@ namespace airline.customers.service
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseWindowsService()
-                .ConfigureAppConfiguration(config => config.AddUserSecrets(Assembly.GetExecutingAssembly()))
+                .UseWindowsService()                
                 .ConfigureHostConfiguration(cfg =>
                 {
                     cfg.SetBasePath(Directory.GetCurrentDirectory());
@@ -36,7 +36,9 @@ namespace airline.customers.service
                 {
                     services
                         .AddServiceConfiguration(hostContext.Configuration)
+                        .AddApplicationDbContext<CustomerDbContext>(hostContext.Configuration)
                         .AddEventBusService(hostContext.Configuration)
+                        .AddServiceDependencies()
                         .AddHostedService<Worker>();
                 });
     }
