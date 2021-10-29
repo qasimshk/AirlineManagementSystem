@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>FlightDetails.database</Name>
+    <Name>Customer.database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{aff9a82b-134c-4226-bab0-7dc6fec283b3}</ProjectGuid>
+    <ProjectGuid>{f87f2264-172e-4602-a3f1-d235acab4f1c}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>FlightDetails.database</RootNamespace>
-    <AssemblyName>FlightDetails.database</AssemblyName>
+    <RootNamespace>Customer.database</RootNamespace>
+    <AssemblyName>Customer.database</AssemblyName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -60,17 +60,9 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
-    <Folder Include="dbo\Stored Procedures\" />
-    <Folder Include="dbo\Views\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\PlaneModel.sql" />
-    <Build Include="dbo\Tables\Country.sql" />
-    <Build Include="dbo\Tables\Airport.sql" />
-    <Build Include="dbo\Tables\Flight.sql" />
-    <Build Include="dbo\Stored Procedures\sp_GetFlightByDestination.sql" />
-    <Build Include="dbo\Stored Procedures\sp_GetAllFlights.sql" />
-    <Build Include="dbo\Stored Procedures\sp_GetFlightByFlightNumber.sql" />
-    <Build Include="dbo\Views\vw_FlightDetails.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="dbo\Tables\Customers.sql" />
   </ItemGroup>
 </Project>

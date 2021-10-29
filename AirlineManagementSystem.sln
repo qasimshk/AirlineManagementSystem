@@ -55,7 +55,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.management.infrastr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Migration", "04 Migration", "{F54AF58A-50CC-4895-9510-9B0A776DCD8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "database.migration.app", "database.migration.app\database.migration.app.csproj", "{840332BD-2A31-4805-B127-88EE478CF170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "database.migration.app", "database.migration.app\database.migration.app.csproj", "{840332BD-2A31-4805-B127-88EE478CF170}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Customer.database", "Customer.database\Customer.database.sqlproj", "{F87F2264-172E-4602-A3F1-D235ACAB4F1C}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Order.database", "Order.database\Order.database.sqlproj", "{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Payment.database", "Payment.database\Payment.database.sqlproj", "{D096401D-74FE-4ED7-9981-F1E428E04FC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seeds", "Seeds", "{CEF617EA-3AA9-4E65-AB19-41C1E87EABDE}"
+	ProjectSection(SolutionItems) = preProject
+		FlightDetails-Data.sql = FlightDetails-Data.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +132,24 @@ Global
 		{840332BD-2A31-4805-B127-88EE478CF170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{840332BD-2A31-4805-B127-88EE478CF170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{840332BD-2A31-4805-B127-88EE478CF170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +179,10 @@ Global
 		{85BF4468-DB8A-40D5-8304-8FB4EB160A1E} = {68FE8B27-FA91-4CB4-A1BF-8D3CF7C9283E}
 		{F54AF58A-50CC-4895-9510-9B0A776DCD8E} = {78865F3F-9A8C-4B63-8859-FF86421AED6A}
 		{840332BD-2A31-4805-B127-88EE478CF170} = {F54AF58A-50CC-4895-9510-9B0A776DCD8E}
+		{F87F2264-172E-4602-A3F1-D235ACAB4F1C} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
+		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
+		{D096401D-74FE-4ED7-9981-F1E428E04FC5} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
+		{CEF617EA-3AA9-4E65-AB19-41C1E87EABDE} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DDD445B-D2D3-4747-B048-F5E985150EEE}
