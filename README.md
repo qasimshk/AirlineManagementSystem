@@ -46,11 +46,13 @@ https://localhost:44314/api/Flight/Destination/NPL/To/POR
 https://localhost:44314/api/Flight/Destination/AUS/To/AUS 
 https://localhost:44314/api/Flight/Destination/USA/To/NPL 
 ```
-- To book a ticket copy the flight number for flight destination API response using any one of the above-mentioned combinations.
-- Expand flight booking ticket post endpoint paste the flight number put departure data, first name, last name & dummy email address, and click execute.
-- Copy order number from booking ticket API response and paste it in flight order state API.
+- To book a ticket copy the flight number from flight destination API response using any one of the above-mentioned combinations.
+- Expand flight booking ticket post endpoint and paste the flight number, enter departure date, first name, last name & dummy email address, and click execute.
+- Copy order number from booking ticket API response and paste it in flight order state API to check its state.
 - If the order state is complete it will generate a ticket number in response.
 - Copy the ticket number along with the order number and paste it into the flight ticket API to view the ticket.
+
+NOTE: email at ins_sheikh@hotmail.com for any queries.
 
 ### NuGet Packages
 
