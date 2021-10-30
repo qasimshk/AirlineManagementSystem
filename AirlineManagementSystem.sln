@@ -68,6 +68,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seeds", "Seeds", "{CEF617EA
 		FlightDetails-Data.sql = FlightDetails-Data.sql
 	EndProjectSection
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Orchestrator.database", "Orchestrator.database\Orchestrator.database.sqlproj", "{EB9A38F8-E8D7-4540-A154-96013AF5620B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,12 @@ Global
 		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D096401D-74FE-4ED7-9981-F1E428E04FC5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +191,7 @@ Global
 		{3C946E9D-2E6F-4988-8B00-2D5B75F897F3} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
 		{D096401D-74FE-4ED7-9981-F1E428E04FC5} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
 		{CEF617EA-3AA9-4E65-AB19-41C1E87EABDE} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
+		{EB9A38F8-E8D7-4540-A154-96013AF5620B} = {C1369514-769B-4E34-A5B4-5BFC1A5F6443}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DDD445B-D2D3-4747-B048-F5E985150EEE}
