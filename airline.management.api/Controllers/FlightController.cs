@@ -44,6 +44,8 @@ namespace airline.management.api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> OrderState([FromRoute] string orderNumber)
         {
+            if (string.IsNullOrEmpty(orderNumber)) return BadRequest("Order number is required");
+
             return Ok(await _mediator.Send(new GetOrderStateQuery(orderNumber)));
         }
 
@@ -52,6 +54,8 @@ namespace airline.management.api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Ticket([FromRoute] string ticketNumber, string orderNumber)
         {
+            if (string.IsNullOrEmpty(orderNumber) && string.IsNullOrEmpty(ticketNumber) ) return BadRequest("Order & ticket number is required");
+
             return Ok(await _mediator.Send(new GetTicketDetailsQuery(ticketNumber, orderNumber)));
         }
 
