@@ -2,7 +2,7 @@
 
 ![](https://github.com/qasimshk/AirlineManagementSystem/blob/master/System%20Design.png)
 
-The airline management system project is developed to explain the concept of orchestrator microservice patterns. As the name says this orchestrator service is responsible for the workflow of each asynchronous transaction. The payload sent by the gateway API is stored in the database and an entry is created. The created entry state is updated on each successful response sent by the consuming microservices. 
+The airline management system project is developed to explain the concept of orchestration microservice patterns. As the name says this orchestrator service is responsible for the workflow of each asynchronous transaction. The payload sent by the gateway API is stored in the database and an entry is created. The created entry state is updated on each successful response sent by the consuming microservices. 
 
 ### Build Status 
 
