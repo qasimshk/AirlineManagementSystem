@@ -20,8 +20,8 @@ namespace airline.orders.service.Consumers
         {
             var ticket = (await _ticketRepository.FindByConditionAsync(x => x.TicketNumber == context.Message.TicketNumber)).SingleOrDefault();
 
-            await context.RespondAsync<ITicketDetailEvent>(new TicketDetailEvent 
-            { 
+            var response = (ticket == null) ? new TicketDetailEvent() : new TicketDetailEvent
+            {
                 ArrivalAirport = ticket.ArrivalAirport,
                 ArrivalCountry = ticket.ArrivalCountry,
                 ArrivalDate = ticket.ArrivalDate,
@@ -29,8 +29,10 @@ namespace airline.orders.service.Consumers
                 DepartureAirport = ticket.DepartureAirport,
                 DepartureCountry = ticket.DepartureCountry,
                 DepartureDate = ticket.DepartureDate,
-                FlightNumber = ticket.FlightNumber            
-            });
+                FlightNumber = ticket.FlightNumber
+            };           
+
+            await context.RespondAsync<ITicketDetailEvent>(response);
         }
     }
 }

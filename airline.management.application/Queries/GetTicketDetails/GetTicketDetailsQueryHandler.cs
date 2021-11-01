@@ -1,6 +1,5 @@
 ﻿using airline.management.application.Abstractions.Services;
 using airline.management.application.Models;
-using airline.management.domain.Exceptions;
 using MediatR;
 using System;
 using System.Threading;
@@ -26,8 +25,6 @@ namespace airline.management.application.Queries.GetTicketDetails
         public async Task<CustomerTicketDto> Handle(GetTicketDetailsQuery request, CancellationToken cancellationToken)
         {
             var ticket = await _orderService.GetTicketDetails(request.TicketNumber, cancellationToken);
-
-            if (ticket == null) throw new NotFoundException("Invalid ticket number");
 
             var orderDetails = await _orchestratorService.GetOrderState(ticket.CorrelationId, cancellationToken);
 

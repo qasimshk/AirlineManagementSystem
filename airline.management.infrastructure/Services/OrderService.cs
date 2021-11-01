@@ -1,6 +1,7 @@
 ﻿using airline.management.abstractions.Orders;
 using airline.management.application.Abstractions.Services;
 using airline.management.domain.Events;
+using airline.management.domain.Exceptions;
 using MassTransit;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ namespace airline.management.infrastructure.Services
             {                
                 TicketNumber = ticketNumber
             }, cancellationToken);
+
+            if (response.CorrelationId == null) throw new NotFoundException("Invalid ticket number");
 
             return new TicketDetailEvent
             {
