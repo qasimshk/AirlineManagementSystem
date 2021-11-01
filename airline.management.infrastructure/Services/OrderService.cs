@@ -2,7 +2,7 @@
 using airline.management.application.Abstractions.Services;
 using airline.management.domain.Events;
 using MassTransit;
-using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace airline.management.infrastructure.Services
@@ -16,13 +16,12 @@ namespace airline.management.infrastructure.Services
             _requestClient = requestClient;
         }
 
-        public async Task<TicketDetailEvent> GetTicketDetails(string ticketNumber, string orderNumber)
+        public async Task<TicketDetailEvent> GetTicketDetails(string ticketNumber, CancellationToken cancellationToken)
         {
             var response = await _requestClient.GetResponse<ITicketDetailEvent>(new TicketDetailRequestEvent
-            {
-                CorrelationId = Guid.Parse(orderNumber),
+            {                
                 TicketNumber = ticketNumber
-            });
+            }, cancellationToken);
 
             return new TicketDetailEvent
             {

@@ -1,11 +1,12 @@
 ﻿using airline.management.domain.Events;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace airline.management.application.Abstractions.Services
 {
-    public interface IOrderService
+    public interface IPaymentService
     {
-        Task<TicketDetailEvent> GetTicketDetails(string ticketNumber, CancellationToken cancellationToken);
+        Task<TicketPaymentDetailsEvent> GetTicketPaymentDetails(Guid paymentReference, CancellationToken cancellationToken);
     }
 }

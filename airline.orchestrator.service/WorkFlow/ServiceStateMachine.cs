@@ -134,7 +134,7 @@ namespace airline.orchestrator.service.WorkFlow
         private Event<IOrderSubmitEvent> OrderSubmitEvent { get; set; }        
         private Event<ICustomerProcessedSuccessfullyEvent> CustomerProcessedSuccessfullyEvent { get; set; }        
         private Event<ITicketCreatedSuccessfullyEvent> TicketCreatedSuccessfullyEvent { get; set; }        
-        private Event<IPaymentProcessedSuccessfully> PaymentProcessedSuccessfully { get; set; }        
+        private Event<IPaymentProcessedSuccessfullyEvent> PaymentProcessedSuccessfully { get; set; }        
         private Event<IFailedEvent> FailedEvent { get; set; }
         private Event<IOrderStateRequestEvent> OrderStateRequestEvent { get; set; }
 

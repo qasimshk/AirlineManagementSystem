@@ -32,7 +32,7 @@ namespace airline.management.infrastructure.Services
             var response = await _orderStateRequest.GetResponse<IOrderStateEvent>(new OrderStateRequestEvent
             {
                 CorrelationId = orderNumber
-            });
+            }, cancellationToken);
 
             if (response == null) throw new NotFoundException("Invalid order number");
 

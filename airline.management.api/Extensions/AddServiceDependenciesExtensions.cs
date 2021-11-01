@@ -26,6 +26,8 @@ namespace airline.management.api.Extensions
             services.AddScoped<IOrchestratorService, OrchestratorService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+
             services.AddScoped<IOrderMapper, OrderMapper>();
 
             return services;

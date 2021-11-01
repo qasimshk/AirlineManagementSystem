@@ -41,7 +41,7 @@ namespace airline.payment.service.Consumers
 
                 var transaction = await _transactionRepository.FindByConditionAsync(x => x.OrderId == context.Message.OrderId);
 
-                await context.RespondAsync<IPaymentProcessedSuccessfully>(new PaymentProcessedSuccessfully
+                await context.RespondAsync<IPaymentProcessedSuccessfullyEvent>(new PaymentProcessedSuccessfully
                 {
                     CorrelationId = context.Message.CorrelationId,
                     PaymentId = transaction.Single().TransactionRef

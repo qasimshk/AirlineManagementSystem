@@ -18,11 +18,11 @@ namespace airline.customers.service.Consumers
 
         public async Task Consume(ConsumeContext<ICustomerDetailRequest> context)
         {
-            var customer = (await _customerRepository.FindByConditionAsync(c => c.CorrelationId == context.Message.CorrelationId)).Single();
+            var customer = (await _customerRepository.FindByConditionAsync(c => c.CustomerRef == context.Message.CustomerReferrence)).SingleOrDefault();
 
             await context.RespondAsync<ICustomerDetailsResult>(new CustomerDetailsResult
             {
-               CorrelationId = context.Message.CorrelationId,
+               CorrelationId = customer.CorrelationId,
                EmailAddress = customer.EmailAddress,
                FirstName = customer.FirstName,
                LastName = customer.LastName,

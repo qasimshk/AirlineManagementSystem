@@ -5,7 +5,6 @@ namespace airline.management.domain.Events
 {
     public class TicketDetailRequestEvent : ITicketDetailRequestEvent
     {
-        public string TicketNumber { get; set; }
-        public Guid CorrelationId { get; set; }
+        public string TicketNumber { get; set; }        
     }
 }

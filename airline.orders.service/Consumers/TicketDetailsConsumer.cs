@@ -18,7 +18,7 @@ namespace airline.orders.service.Consumers
 
         public async Task Consume(ConsumeContext<ITicketDetailRequestEvent> context)
         {
-            var ticket = (await _ticketRepository.FindByConditionAsync(x => x.TicketNumber == context.Message.TicketNumber)).Single();
+            var ticket = (await _ticketRepository.FindByConditionAsync(x => x.TicketNumber == context.Message.TicketNumber)).SingleOrDefault();
 
             await context.RespondAsync<ITicketDetailEvent>(new TicketDetailEvent 
             { 

@@ -1,5 +1,6 @@
 ﻿using airline.management.abstractions.Customers;
 using airline.management.abstractions.Orders;
+using airline.management.abstractions.Payments;
 using airline.management.sharedkernal.Configurations;
 using airline.management.sharedkernal.Extensions;
 using MassTransit;
@@ -31,6 +32,8 @@ namespace airline.management.api.Extensions
                 cfg.AddRequestClient<ICustomerDetailRequest>();
 
                 cfg.AddRequestClient<ITicketDetailRequestEvent>();
+
+                cfg.AddRequestClient<ITicketPaymentDetailsRequestEvent>();
             });
 
             // Required for Request Client

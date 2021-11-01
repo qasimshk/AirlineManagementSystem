@@ -1,5 +1,6 @@
 ﻿using airline.management.application.Abstractions.Services;
 using airline.management.application.Models;
+using airline.management.domain.Exceptions;
 using MediatR;
 using System;
 using System.Threading;
@@ -11,18 +12,28 @@ namespace airline.management.application.Queries.GetTicketDetails
     {
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
+        private readonly IPaymentService _paymentService;
+        private readonly IOrchestratorService _orchestratorService;
 
-        public GetTicketDetailsQueryHandler(ICustomerService customerService, IOrderService orderService)
+        public GetTicketDetailsQueryHandler(ICustomerService customerService, IOrderService orderService, IPaymentService paymentService, IOrchestratorService orchestratorService)
         {
             _customerService = customerService;
             _orderService = orderService;
+            _paymentService = paymentService;
+            _orchestratorService = orchestratorService;
         }
 
         public async Task<CustomerTicketDto> Handle(GetTicketDetailsQuery request, CancellationToken cancellationToken)
         {
-            var ticket = await _orderService.GetTicketDetails(request.TicketNumber, request.OrderNumber);
+            var ticket = await _orderService.GetTicketDetails(request.TicketNumber, cancellationToken);
 
-            var customer = await _customerService.GetCustomerDetails(Guid.Parse(request.OrderNumber));
+            if (ticket == null) throw new NotFoundException("Invalid ticket number");
+
+            var orderDetails = await _orchestratorService.GetOrderState(ticket.CorrelationId, cancellationToken);
+
+            var customer = await _customerService.GetCustomerDetails(Guid.Parse(orderDetails.CustomerId), cancellationToken);
+
+            var payment = await _paymentService.GetTicketPaymentDetails(Guid.Parse(orderDetails.PaymentId), cancellationToken);
 
             return new CustomerTicketDto
             {
@@ -40,8 +51,9 @@ namespace airline.management.application.Queries.GetTicketDetails
                     Airport = ticket.ArrivalAirport,
                     Country = ticket.ArrivalCountry,
                     FlightgDate = ticket.ArrivalDate.ToString("d")
-                }
-            };            
+                },
+                TicketAmount = string.Format("{0}.00£", payment.Amount)
+            };
         }
     }
 }

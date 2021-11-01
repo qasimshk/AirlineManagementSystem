@@ -1,8 +1,6 @@
-﻿using airline.management.abstractions.Base;
-
-namespace airline.management.abstractions.Orders
+﻿namespace airline.management.abstractions.Orders
 {
-    public interface ITicketDetailRequestEvent : IBaseEvent
+    public interface ITicketDetailRequestEvent
     {
         string TicketNumber { get; set; }
     }

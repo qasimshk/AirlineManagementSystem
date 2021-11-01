@@ -3,9 +3,9 @@ using System;
 
 namespace airline.payment.service.Events
 {
-    public class PaymentProcessedSuccessfully : IPaymentProcessedSuccessfullyEvent
+    public class TicketPaymentDetails : ITicketPaymentDetailsEvent
     {
-        public Guid PaymentId { get; set; }
+        public double Amount { get; set; }
         public Guid CorrelationId { get; set; }
     }
 }

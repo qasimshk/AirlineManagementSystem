@@ -3,6 +3,7 @@ using airline.management.application.Abstractions.Services;
 using airline.management.domain.Events;
 using MassTransit;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace airline.management.infrastructure.Services
@@ -16,12 +17,12 @@ namespace airline.management.infrastructure.Services
             _customerDetailRequest = customerDetailRequest;
         }
 
-        public async Task<CustomerDetailsEvent> GetCustomerDetails(Guid correlationId)
+        public async Task<CustomerDetailsEvent> GetCustomerDetails(Guid customerReferrence, CancellationToken cancellationToken)
         {
             var response = await _customerDetailRequest.GetResponse<ICustomerDetailsResult>(new CustomerDetailRequest 
             { 
-                CorrelationId = correlationId
-            });
+                CustomerReferrence = customerReferrence
+            }, cancellationToken);
 
             return new CustomerDetailsEvent
             {

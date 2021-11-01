@@ -38,7 +38,7 @@ namespace airline.management.api.Controllers
             return Ok(await _mediator.Send(new GetFlightByDestinationQuery(departure, arrival)));
         }
 
-        [HttpGet("Order/State/{orderNumber}")]
+        [HttpGet("Order/{orderNumber}")]
         [ProducesResponseType(typeof(OrderStateDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -49,14 +49,14 @@ namespace airline.management.api.Controllers
             return Ok(await _mediator.Send(new GetOrderStateQuery(orderNumber)));
         }
 
-        [HttpGet("Ticket/{ticketNumber}/{orderNumber}")]
+        [HttpGet("Ticket/{ticketNumber}")]
         [ProducesResponseType(typeof(CustomerTicketDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Ticket([FromRoute] string ticketNumber, string orderNumber)
+        public async Task<IActionResult> Ticket([FromRoute] string ticketNumber)
         {
-            if (string.IsNullOrEmpty(orderNumber) && string.IsNullOrEmpty(ticketNumber) ) return BadRequest("Order & ticket number is required");
+            if (string.IsNullOrEmpty(ticketNumber) ) return BadRequest("Ticket number is required");
 
-            return Ok(await _mediator.Send(new GetTicketDetailsQuery(ticketNumber, orderNumber)));
+            return Ok(await _mediator.Send(new GetTicketDetailsQuery(ticketNumber)));
         }
 
         [HttpPost("BookingTicket")]

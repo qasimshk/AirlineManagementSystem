@@ -5,6 +5,6 @@ namespace airline.management.domain.Events
 {
     public class CustomerDetailRequest : ICustomerDetailRequest
     {
-        public Guid CorrelationId { get; set; }
+        public Guid CustomerReferrence { get; set; }
     }
 }

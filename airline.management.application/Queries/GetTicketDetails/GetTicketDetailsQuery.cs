@@ -5,13 +5,11 @@ namespace airline.management.application.Queries.GetTicketDetails
 {
     public class GetTicketDetailsQuery : IRequest<CustomerTicketDto>
     {
-        public GetTicketDetailsQuery(string ticketNumber, string orderNumber)
+        public GetTicketDetailsQuery(string ticketNumber)
         {
-            TicketNumber = ticketNumber;
-            OrderNumber = orderNumber;
+            TicketNumber = ticketNumber;            
         }
 
-        public string TicketNumber { get; init; }
-        public string OrderNumber { get; init; }
+        public string TicketNumber { get; init; }        
     }
 }

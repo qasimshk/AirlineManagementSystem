@@ -7,6 +7,7 @@
         public string TicketNumber { get; set; }
         public FlightDetails Departure { get; set; }
         public FlightDetails Arrival { get; set; }
+        public string TicketAmount { get; set; }
     }
 
     public class FlightDetails
