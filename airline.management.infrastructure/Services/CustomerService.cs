@@ -1,6 +1,7 @@
 ﻿using airline.management.abstractions.Customers;
 using airline.management.application.Abstractions.Services;
 using airline.management.domain.Events;
+using airline.management.domain.Exceptions;
 using MassTransit;
 using System;
 using System.Threading;
@@ -23,6 +24,8 @@ namespace airline.management.infrastructure.Services
             { 
                 CustomerReferrence = customerReferrence
             }, cancellationToken);
+
+            if (response == null) throw new NotFoundException("Record not found");
 
             return new CustomerDetailsEvent
             {
