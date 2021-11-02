@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\airline.management.application\airline.management.application.csproj" />
+    <ProjectReference Include="..\airline.management.domain\airline.management.domain.csproj" />
+  </ItemGroup>
+
 </Project>

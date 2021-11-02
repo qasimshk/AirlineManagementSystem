@@ -19,4 +19,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\airline.customers.service\airline.customers.service.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -44,7 +44,7 @@ namespace airline.flightdetail.api.Controllers
 
             var details = await _flightRepository.GetFlightDetails(departure, arrival);
 
-            return details is null ? NotFound("No flights found for specified destination") : Ok(details);
+            return details.Any() ? Ok(details) : NotFound("No flights found for specified destination");
         }
 
         [HttpGet("SearchFlight/{FlightNumber}")]
