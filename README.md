@@ -57,6 +57,8 @@ https://localhost:44314/api/Flight/Destination/USA/To/NPL
 - [MassTransit](https://masstransit-project.com/getting-started/)
 - [MediatR](https://github.com/jbogard/MediatR/wiki)
 - [Fluent Validator](https://docs.fluentvalidation.net/en/latest/index.html)
+- [Fluent Assertion](https://fluentassertions.com/introduction)
+- [NSubstitute](https://nsubstitute.github.io/help/getting-started/)
 
  
 
