@@ -1,4 +1,6 @@
-﻿using airline.management.application.Models;
+﻿using airline.customers.service.Entities;
+using airline.management.application.Models;
+using System;
 using System.Collections.Generic;
 
 namespace airline.management.infrastructure.test.Seeds
@@ -43,6 +45,21 @@ namespace airline.management.infrastructure.test.Seeds
                     ManufacturerName = "AirBus",
                     ModelNumber = "1234",
                     PlaneRange = 1234
+                }
+            };
+        }
+
+        public static List<Customers> GetMockCustomerDetailEvent()
+        {
+            return new() 
+            {
+                new Customers
+                {
+                    CorrelationId = Guid.Parse("06d53a96-7973-450b-9e72-451ec35d977e"),
+                    EmailAddress = "tom@abc.com",
+                    FirstName = "Tom",
+                    LastName = "Jerry",
+                    CustomerRef = Guid.Parse("06d53a96-7973-450b-9e72-451ec35d977e")
                 }
             };
         }

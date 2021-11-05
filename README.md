@@ -52,7 +52,7 @@ https://localhost:44314/api/Flight/Destination/USA/To/NPL
 - If the order state is complete it will generate a ticket number in response.
 - Copy the ticket number and paste it into the flight ticket API to view the ticket.
 
-NOTE: You won't find any unit tests projects in the solution as I am still working on it. Email at ins_sheikh@hotmail.com for any queries.
+NOTE: You won't find any unit tests projects in the solution as I am still working on it. Raise any issues in discussion
 
 ### NuGet Packages
 

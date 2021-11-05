@@ -3,7 +3,6 @@ using airline.management.application.Models;
 using airline.management.domain.Exceptions;
 using MediatR;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,7 +21,7 @@ namespace airline.management.application.Queries.GetFlightByDestination
         {
             var flight = await _flightDetailServices.GetFlightByDestination(request.Departure, request.Arrival);
 
-            if (!flight.Any()) throw new NotFoundException("No flight found with provided destination");
+            if (flight == null) throw new NotFoundException("No flight found with provided destination");
 
             return flight;
         }

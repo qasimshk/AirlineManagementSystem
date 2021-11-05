@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\airline.customers.service\airline.customers.service.csproj" />
     <ProjectReference Include="..\airline.management.domain\airline.management.domain.csproj" />
     <ProjectReference Include="..\airline.management.infrastructure\airline.management.infrastructure.csproj" />
   </ItemGroup>
