@@ -121,11 +121,11 @@ namespace airline.orchestrator.service.WorkFlow
 
         #region State
 
-        private State ProcessingOrder { get; set; }
-        private State CustomerCreatedOrUpdated { get; set; }
-        private State TicketCreated { get; set; }
-        private State Completed { get; set; }
-        private State Failed { get; set; }        
+        public State ProcessingOrder { get; set; }
+        public State CustomerCreatedOrUpdated { get; set; }
+        public State TicketCreated { get; set; }
+        public State Completed { get; set; }
+        public State Failed { get; set; }        
 
         #endregion
 
