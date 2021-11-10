@@ -168,7 +168,6 @@ namespace airline.management.infrastructure.BusinessProcess
                 }
 
                 // update current token 
-
                 storedToken.IsUsed = true;
                 _dbContext.RefreshTokens.Update(storedToken);
                 await _dbContext.SaveChangesAsync();
@@ -216,6 +215,7 @@ namespace airline.management.infrastructure.BusinessProcess
         {
             var random = new Random();
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
             return new string(Enumerable.Repeat(chars, length)
                 .Select(x => x[random.Next(x.Length)]).ToArray()) + Guid.NewGuid();
         }
