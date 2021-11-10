@@ -25,7 +25,7 @@ namespace airline.management.application.Commands.RefreshToken
                 return new RegistrationResponseDto()
                 {
                     Errors = new List<string>() {
-                            
+                            "Invalid tokens"
                         },
                     Success = false
                 };
