@@ -23,6 +23,7 @@ namespace airline.management.api
             services
                 .AddApplicationSettings(_configuration, applicationName)
                 .AddApplicationDbContext<GatewayDbContext>(_configuration)
+                .AddIdentitySettings(_configuration)
                 .AddServiceConfiguration(_configuration)
                 .AddInternalServices()
                 .AddServiceDependencies()                
