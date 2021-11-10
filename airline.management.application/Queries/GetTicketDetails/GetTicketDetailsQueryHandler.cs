@@ -1,5 +1,6 @@
 ﻿using airline.management.application.Abstractions.Services;
 using airline.management.application.Models;
+using airline.management.domain.Events;
 using MediatR;
 using System;
 using System.Threading;
@@ -32,24 +33,29 @@ namespace airline.management.application.Queries.GetTicketDetails
 
             var payment = await _paymentService.GetTicketPaymentDetails(Guid.Parse(orderDetails.PaymentId), cancellationToken);
 
+            return Map(ticket, customer, payment, request.TicketNumber);
+        }
+
+        private CustomerTicketDto Map(TicketDetailEvent ticketDetailEvent, CustomerDetailsEvent customerDetailsEvent, TicketPaymentDetailsEvent ticketPaymentDetailsEvent, string ticketNumber)
+        {
             return new CustomerTicketDto
             {
-                FlightNumber = ticket.FlightNumber,
-                TicketNumber = request.TicketNumber,
-                FullName = $"{customer.FirstName} {customer.LastName}",
+                FlightNumber = ticketDetailEvent.FlightNumber,
+                TicketNumber = ticketNumber,
+                FullName = $"{customerDetailsEvent.FirstName} {customerDetailsEvent.LastName}",
                 Departure = new FlightDetails
                 {
-                    Airport = ticket.DepartureAirport,
-                    Country = ticket.DepartureCountry,
-                    FlightgDate = ticket.DepartureDate.ToString("d")
+                    Airport = ticketDetailEvent.DepartureAirport,
+                    Country = ticketDetailEvent.DepartureCountry,
+                    FlightgDate = ticketDetailEvent.DepartureDate.ToString("d")
                 },
                 Arrival = new FlightDetails
                 {
-                    Airport = ticket.ArrivalAirport,
-                    Country = ticket.ArrivalCountry,
-                    FlightgDate = ticket.ArrivalDate.ToString("d")
+                    Airport = ticketDetailEvent.ArrivalAirport,
+                    Country = ticketDetailEvent.ArrivalCountry,
+                    FlightgDate = ticketDetailEvent.ArrivalDate.ToString("d")
                 },
-                TicketAmount = string.Format("{0}.00£", payment.Amount)
+                TicketAmount = string.Format("{0}.00£", ticketPaymentDetailsEvent.Amount)
             };
         }
     }
