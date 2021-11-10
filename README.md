@@ -13,8 +13,8 @@ The airline management system project is developed to explain the concept of orc
 ### How to install:
 - Install [.Net 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) on the pc if required.
 - Open solution in Visual Studio 2019.
-- Create five databases in SQL server by these names: Customers, FlightDetails, ServiceState, Orders & Payments
-- Navigate to the project opened in visual studio and expand the database folder to publish all five SQL projects one by one to create the schema in all five databases. Please make sure that the database project is pointing to the current database referenced by its name.
+- Create six databases in SQL server by these names: Customers, FlightDetails, ServiceState, Orders, Gateway & Payments
+- Navigate to the project opened in visual studio and expand the database folder to publish all six SQL projects one by one to create the schema in all six databases. Please make sure that the database project is pointing to the current database referenced by its name.
 - Open seeds folder and execute the query file in flight details database in SQL server.
 - For message bus, AMQP URL is required if you do not have rabbitMq installed on your local system then follow steps mentioned with alphabetical prefix.
 > a) Open [Cloud AMQP](https://www.cloudamqp.com/) in the browser.
@@ -24,7 +24,7 @@ The airline management system project is developed to explain the concept of orc
 > c) Once logged in click on the create new instance on the top right green button and <b>create an instance</b> with the <b>FREE plan (little lemur)</b>.
 >
 > d) Click on the created instance and copy the AMQP URL
-- Go to airline management API project present in 01 Gateway folder and open appsettings.Development.json and paste AMQP URL in EventBusConnection value.
+- Go to airline management API project present in 01 Gateway folder and open appsettings.Development.json. Update SQL connection string with the server name, username, password, and event bus connection.
 - Go to airline customers service in customers folder and open appsettings.Development.json. Update SQL connection string with the server name, username, password, and event bus connection.
 - Go to airline flight details API in flight details folder and open appsettings.Development.json. Update SQL connection string with the server name, username, and password.
 - Go to airline notification service in notifications folder and open appsettings.Development.json. Update event bus connection.
@@ -36,15 +36,18 @@ The airline management system project is developed to explain the concept of orc
   
 ### Project user guide:
 - At project start, there will be one swagger web page and five console services
+- First create an account using registration service
+- Copy the token from registration response, click on <b>authorize</b> button in swagger at top right and paste the token in the value. <b>Don't add word bearer in the beginning of the token</b>.
+- Token is valid for 5 minutes only. To refresh it, copy token and refresh token from registration or login api response and paste it in refresh token input body.
 - You can see the list of countries and available flights by executing the first and second APIs.
 - In the third API, please use any below mentioned country ISO codes to search a flight.
 ```
-https://localhost:44314/api/Flight/Destination/ENG/To/NZL 
-https://localhost:44314/api/Flight/Destination/NPL/To/AUS 
-https://localhost:44314/api/Flight/Destination/AUS/To/UAE 
-https://localhost:44314/api/Flight/Destination/NPL/To/POR 
-https://localhost:44314/api/Flight/Destination/AUS/To/AUS 
-https://localhost:44314/api/Flight/Destination/USA/To/NPL 
+https://localhost:44314/api/flight/destination/ENG/To/NZL 
+https://localhost:44314/api/flight/destination/NPL/To/AUS 
+https://localhost:44314/api/flight/destination/AUS/To/UAE 
+https://localhost:44314/api/flight/destination/NPL/To/POR 
+https://localhost:44314/api/flight/destination/AUS/To/AUS 
+https://localhost:44314/api/flight/destination/USA/To/NPL 
 ```
 - To book a ticket copy the flight number from flight destination API response using any one of the above-mentioned combinations.
 - Expand flight booking ticket post endpoint and paste the flight number, enter departure date, first name, last name & dummy email address, and click execute.
@@ -59,6 +62,7 @@ https://localhost:44314/api/Flight/Destination/USA/To/NPL
 - [Fluent Validator](https://docs.fluentvalidation.net/en/latest/index.html)
 - [Fluent Assertion](https://fluentassertions.com/introduction)
 - [NSubstitute](https://nsubstitute.github.io/help/getting-started/)
+- [Microsoft Identity](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity?view=aspnetcore-6.0)
 
  
 

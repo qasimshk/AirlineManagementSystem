@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\airline.management.abstractions\airline.management.abstractions.csproj" />
+    <ProjectReference Include="..\airline.management.sharedkernal\airline.management.sharedkernal.csproj" />
   </ItemGroup>
 
 </Project>

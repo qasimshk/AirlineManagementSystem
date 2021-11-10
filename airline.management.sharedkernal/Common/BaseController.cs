@@ -4,8 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace airline.management.sharedkernal.Common
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    [ApiController]    
+    [Route("api/[controller]")]    
     public abstract class BaseController : ControllerBase
     {
         private ISender mediator;

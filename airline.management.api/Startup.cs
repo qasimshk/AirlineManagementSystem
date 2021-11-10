@@ -1,4 +1,5 @@
 using airline.management.api.Extensions;
+using airline.management.infrastructure.Persistence.Context;
 using airline.management.sharedkernal.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +23,7 @@ namespace airline.management.api
         {
             services
                 .AddApplicationSettings(_configuration, applicationName)
+                .AddApplicationDbContext<GatewayDbContext>(_configuration)
                 .AddServiceConfiguration(_configuration)
                 .AddInternalServices()
                 .AddServiceDependencies()                
@@ -42,12 +44,14 @@ namespace airline.management.api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
+            });                        
         }
     }
 }

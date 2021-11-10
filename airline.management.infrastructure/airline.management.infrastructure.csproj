@@ -9,4 +9,8 @@
     <ProjectReference Include="..\airline.management.domain\airline.management.domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Persistence\Migrations\" />
+  </ItemGroup>
+
 </Project>

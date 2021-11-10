@@ -6,6 +6,7 @@ using airline.management.application.Queries.GetFlightByDestination;
 using airline.management.application.Queries.GetOrderState;
 using airline.management.application.Queries.GetTicketDetails;
 using airline.management.sharedkernal.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace airline.management.api.Controllers
 {
+    [Authorize]
     public class FlightController : BaseController
     {
         [HttpGet("Countries")]
