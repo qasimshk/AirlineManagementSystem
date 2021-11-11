@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
@@ -15,20 +16,20 @@ namespace airline.management.api.Extensions
     {
         public static IServiceCollection AddIdentitySettings(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<JwtConfig>(configuration.GetSection("JwtConfig"));
+            var jwtConfig = services.BuildServiceProvider().GetRequiredService<IOptions<JwtConfig>>().Value;
 
             var identityconfiguration = configuration.GetSection(nameof(IdentityConfiguration)).Get<IdentityConfiguration>();
 
-            var key = Encoding.ASCII.GetBytes(configuration["JwtConfig:Secret"]);
+            var key = Encoding.ASCII.GetBytes(jwtConfig.Secret);
 
             var tokenValidationParams = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                RequireExpirationTime = false
+                ValidateAudience = false,                
+                ValidateLifetime = true, // Token expired date will be verified it is set to TRUE
+                ClockSkew = TimeSpan.Zero                
             };
 
             services.AddSingleton(tokenValidationParams);

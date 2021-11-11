@@ -2,18 +2,20 @@
 using airline.management.application.Commands.RefreshToken;
 using airline.management.application.Commands.Registration;
 using airline.management.application.Models;
+using airline.management.application.Queries.GetUserClaims;
 using airline.management.sharedkernal.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace airline.management.api.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : BaseController
     {
         [HttpPost("Register")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(RegistrationResponseDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegistrationCommand register)
@@ -24,6 +26,7 @@ namespace airline.management.api.Controllers
         }
 
         [HttpPost("Login")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(RegistrationResponseDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Login([FromBody] LoginCommand login)
@@ -33,7 +36,9 @@ namespace airline.management.api.Controllers
             return (result.Success == true) ? Ok(result) : BadRequest(result);
         }
 
+        
         [HttpPost("RefreshToken")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(RegistrationResponseDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand refreshToken)
@@ -41,6 +46,17 @@ namespace airline.management.api.Controllers
             var result = await _mediator.Send(refreshToken);
 
             return (result.Success == true) ? Ok(result) : BadRequest(result);
+        }
+                
+        [HttpGet("UserClaims")]
+        [Authorize]
+        [ProducesResponseType(typeof(UserClaimsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> UserClaims()
+        {
+            var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+            return (!string.IsNullOrEmpty(token)) ? Ok(await _mediator.Send(new GetUserClaimsQuery(token))) : NotFound("Token not found");
         }
     }
 }

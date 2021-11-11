@@ -64,9 +64,9 @@ namespace airline.management.api.Controllers
         [HttpPost("BookingTicket")]
         [ProducesResponseType(typeof(OrderSubmittedDto), (int)HttpStatusCode.OK)]        
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> BookingTicket([FromBody] SubmitOrderCommand command)
+        public async Task<IActionResult> BookingTicket([FromBody] SubmitOrderCommand submitOrder)
         {
-            return Ok(await _mediator.Send(command));
-        }
+            return Ok(await _mediator.Send(submitOrder));
+        }        
     }
 }

@@ -9,5 +9,7 @@ namespace airline.management.application.Abstractions.BusinessProcess
         Task<RegistrationResponseDto> GenerateJwtToken(IdentityUser user);
 
         Task<RegistrationResponseDto> VerifyAndGenerateToken(string token, string refreshToken);
+
+        UserClaimsDto GetUserClaims(string token);
     }
 }

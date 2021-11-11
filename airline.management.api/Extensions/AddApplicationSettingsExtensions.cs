@@ -1,5 +1,6 @@
 ﻿using airline.management.api.Configurations;
 using airline.management.api.Filters;
+using airline.management.infrastructure.BusinessProcess;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace airline.management.api.Extensions
             services.AddOptions();
 
             services.Configure<ServicesEndpoints>(configuration.GetSection(nameof(ServicesEndpoints)));
+
+            services.Configure<JwtConfig>(configuration.GetSection("JwtConfig"));
 
             services.AddControllers();
 

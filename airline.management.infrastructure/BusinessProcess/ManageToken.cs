@@ -51,7 +51,7 @@ namespace airline.management.infrastructure.BusinessProcess
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(_jwtConfig.ExpiryInMinutes),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             };
 
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
@@ -79,7 +79,7 @@ namespace airline.management.infrastructure.BusinessProcess
             };
         }
 
-        public async Task<RegistrationResponseDto> VerifyAndGenerateToken(string token, string refreshToken)
+        public UserClaimsDto GetUserClaims(string token)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
@@ -87,6 +87,59 @@ namespace airline.management.infrastructure.BusinessProcess
             {
                 // Validation 1 - Validation JWT token format
                 var tokenInVerification = jwtTokenHandler.ValidateToken(token, _tokenValidationParams, out var validatedToken);
+
+                var userClaims = (JwtSecurityToken)validatedToken;
+
+                if (userClaims is null)
+                {
+                    return new UserClaimsDto()
+                    {
+                        Success = false,
+                        Errors = new List<string>() {
+                            "Token has been expired"
+                        }
+                    };
+                }
+
+                return new UserClaimsDto
+                {
+                    EmailAddress = userClaims.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email).Value,
+                    UserId = Guid.Parse(userClaims.Claims.FirstOrDefault(x => x.Type == "Id").Value),
+                    Success = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new UserClaimsDto()
+                {
+                    Success = false,
+                    Errors = new List<string>() {
+                            ex.Message
+                        }
+                };
+            }
+        }
+
+        public async Task<RegistrationResponseDto> VerifyAndGenerateToken(string token, string refreshToken)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+
+            var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
+
+            var tokenValidationParams = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = false, // Token expired date will not be verified if it is set to FALSE
+                ClockSkew = TimeSpan.Zero
+            };
+
+            try
+            {
+                // Validation 1 - Validation JWT token format
+                var tokenInVerification = jwtTokenHandler.ValidateToken(token, tokenValidationParams, out var validatedToken);
 
                 // Validation 2 - Validate encryption alg
                 if (validatedToken is JwtSecurityToken jwtSecurityToken)
