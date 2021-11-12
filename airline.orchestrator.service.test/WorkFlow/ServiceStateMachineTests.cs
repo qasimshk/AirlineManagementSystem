@@ -67,7 +67,7 @@ namespace airline.orchestrator.service.test.WorkFlow
 
                 instance.Should().NotBeNull();
 
-                instance.CurrentState.Should().BeEquivalentTo("ProcessingOrder");               
+                instance.CurrentState.Should().BeEquivalentTo("Submitted");               
             }
             finally
             {
