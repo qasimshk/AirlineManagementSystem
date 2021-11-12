@@ -55,7 +55,7 @@ namespace airline.management.application.Queries.GetTicketDetails
                     Country = ticketDetailEvent.ArrivalCountry,
                     FlightgDate = ticketDetailEvent.ArrivalDate.ToString("d")
                 },
-                TicketAmount = string.Format("{0}.00£", ticketPaymentDetailsEvent.Amount)
+                TicketAmount = string.Format("£{0}.00", ticketPaymentDetailsEvent.Amount)
             };
         }
     }

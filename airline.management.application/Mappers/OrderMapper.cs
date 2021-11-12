@@ -25,7 +25,7 @@ namespace airline.management.application.Mappers
                 Customer = $"{from.Customer.FirstName} {from.Customer.LastName}",
                 EmailAddress = from.Customer.EmailAddress,
                 OrderNumber = from.CorrelationId,
-                OrderDate = from.CreatedOn
+                OrderDate = from.CreatedOn.ToString("dd/MM/yyyy")
             };
         }
 

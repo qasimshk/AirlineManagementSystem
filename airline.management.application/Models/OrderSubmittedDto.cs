@@ -7,6 +7,6 @@ namespace airline.management.application.Models
         public Guid OrderNumber { get; set; }
         public string Customer { get; set; }
         public string EmailAddress { get; set; }        
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
     }
 }
