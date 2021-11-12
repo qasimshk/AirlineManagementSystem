@@ -25,12 +25,12 @@ namespace airline.management.infrastructure.BusinessProcess
 
         public ManageToken(
             UserManager<IdentityUser> userManager,
-            IOptionsMonitor<JwtConfig> optionsMonitor,
+            IOptions<JwtConfig> optionsMonitor,
             TokenValidationParameters tokenValidationParams,
             GatewayDbContext dbContext)
         {
             _userManager = userManager;
-            _jwtConfig = optionsMonitor.CurrentValue;
+            _jwtConfig = optionsMonitor.Value;
             _tokenValidationParams = tokenValidationParams;
             _dbContext = dbContext;
         }
@@ -108,13 +108,13 @@ namespace airline.management.infrastructure.BusinessProcess
                     Success = true
                 };
             }
-            catch (Exception ex)
+            catch
             {
                 return new UserClaimsDto()
                 {
                     Success = false,
                     Errors = new List<string>() {
-                            ex.Message
+                            "Token Expired"
                         }
                 };
             }
@@ -215,7 +215,7 @@ namespace airline.management.infrastructure.BusinessProcess
                     {
                         Success = false,
                         Errors = new List<string>() {
-                            "Token doesn't match"
+                            $"Token doesn't match"
                         }
                     };
                 }
