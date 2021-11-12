@@ -63,7 +63,7 @@ namespace airline.orchestrator.service.test.WorkFlow
                 // did the actual consumer [state machine] consume the message
                 sagaHarness.Consumed.Select<IOrderSubmitEvent>().Any().Should().BeTrue();
                 
-                var instance = sagaHarness.Created.ContainsInState(correlationId, machine, machine.ProcessingOrder);
+                var instance = sagaHarness.Created.ContainsInState(correlationId, machine, machine.Submitted);
 
                 instance.Should().NotBeNull();
 

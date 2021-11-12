@@ -26,24 +26,19 @@ namespace airline.management.application.test.MockData
             {
                 Customer = "Tom Jerry",
                 EmailAddress = "testemail@abc.com",
-                OrderDate = DateTime.Parse("2021-11-05"),
+                OrderDate = "2021-11-05",
                 OrderNumber = Guid.Parse("593bc330-fac8-439f-8b0a-d728e7197716"),
             };
         }
 
-        public static OrderSubmitEvent GetOrderSubmitEvent()
+        public static OrderSubmittedEvent GetOrderSubmitEvent()
         {
-            return new OrderSubmitEvent
+            return new OrderSubmittedEvent
             { 
                 CorrelationId = Guid.Parse("593bc330-fac8-439f-8b0a-d728e7197716"),
-                CreatedOn = DateTime.Parse("2021-11-05"),
-                Customer = new CustomerDetailsdsfsdfEvent
-                {
-                    CorrelationId = Guid.Parse("593bc330-fac8-439f-8b0a-d728e7197716"),
-                    EmailAddress = "testemail@abc.com",
-                    FirstName = "Tom",
-                    LastName = "Jerry"
-                }
+                Customer = "Tom Jerry",
+                EmailAddress = "testemail@abc.com",
+                OrderDate = "2021-11-05",
             };
         }
 
@@ -132,7 +127,7 @@ namespace airline.management.application.test.MockData
                 },
                 FlightNumber = "123456",
                 FullName = "Tom Jerry",
-                TicketAmount = "50.00£",
+                TicketAmount = "£50.00",
                 TicketNumber = "FL12345"
             };
         }

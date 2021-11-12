@@ -24,6 +24,7 @@ namespace airline.orchestrator.service.WorkFlow
                 Event(() => TicketCreatedSuccessfullyEvent, o => o.CorrelateById(x => x.Message.CorrelationId));
                 Event(() => PaymentProcessedSuccessfully, o => o.CorrelateById(x => x.Message.CorrelationId));
                 Event(() => FailedEvent, o => o.CorrelateById(x => x.Message.CorrelationId));
+                Event(() => OrderSubmittedEvent, o => o.CorrelateById(x => x.Message.CorrelationId));
 
                 Event(() => OrderStateRequestEvent, b =>
                 {
@@ -51,9 +52,17 @@ namespace airline.orchestrator.service.WorkFlow
                         context.Instance.JsonOrderRequest = JsonConvert.SerializeObject(context.Data);
                     })
                     .Publish(context => new CreateOrUpdateCustomerEvent(JsonConvert.DeserializeObject<OrderSubmitEvent>(context.Instance.JsonOrderRequest).Customer))
-                    .TransitionTo(ProcessingOrder));
+                    .TransitionTo(Submitted)
+                    .RespondAsync(x => x.Init<IOrderSubmittedEvent>(new OrderSubmittedEvent
+                    {
+                        CorrelationId = x.Instance.CorrelationId,
+                        Customer = $"{x.Data.Customer.FirstName} {x.Data.Customer.LastName}",
+                        EmailAddress = x.Data.Customer.EmailAddress,
+                        OrderDate = DateTime.Now.ToString("D"),
+                        Status = x.Instance.CurrentState
+                    })));
 
-                During(ProcessingOrder,
+                During(Submitted,
                     When(CustomerProcessedSuccessfullyEvent)
                     .Then(context => {
                         context.Instance.CustomerId = context.Data.CustomerId.ToString();
@@ -102,7 +111,7 @@ namespace airline.orchestrator.service.WorkFlow
                     .RespondAsync(x => x.Init<IOrderStateEvent>(new OrderStateEvent
                     {
                         CorrelationId = x.Instance.CorrelationId,
-                        CreatedOn = x.Instance.CreatedOn?.ToString("dd-MM-yy"),
+                        CreatedOn = x.Instance.CreatedOn?.ToString("dd-MM-yyyy"),
                         CurrentState = x.Instance.CurrentState,
                         CustomerId = x.Instance.CustomerId,
                         OrderId = x.Instance.OrderId,
@@ -121,7 +130,7 @@ namespace airline.orchestrator.service.WorkFlow
 
         #region State
 
-        public State ProcessingOrder { get; set; }
+        public State Submitted { get; set; }
         public State CustomerCreatedOrUpdated { get; set; }
         public State TicketCreated { get; set; }
         public State Completed { get; set; }
@@ -131,7 +140,8 @@ namespace airline.orchestrator.service.WorkFlow
 
         #region Events
 
-        private Event<IOrderSubmitEvent> OrderSubmitEvent { get; set; }        
+        private Event<IOrderSubmitEvent> OrderSubmitEvent { get; set; }
+        private Event<IOrderSubmittedEvent> OrderSubmittedEvent { get; set; }
         private Event<ICustomerProcessedSuccessfullyEvent> CustomerProcessedSuccessfullyEvent { get; set; }        
         private Event<ITicketCreatedSuccessfullyEvent> TicketCreatedSuccessfullyEvent { get; set; }        
         private Event<IPaymentProcessedSuccessfullyEvent> PaymentProcessedSuccessfully { get; set; }        

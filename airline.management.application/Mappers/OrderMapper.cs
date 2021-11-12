@@ -18,14 +18,15 @@ namespace airline.management.application.Mappers
             _flightDetailServices = flightDetailServices;
         }
 
-        public OrderSubmittedDto Map(OrderSubmitEvent from)
+        public OrderSubmittedDto Map(OrderSubmittedEvent from)
         {
             return new OrderSubmittedDto
             {
-                Customer = $"{from.Customer.FirstName} {from.Customer.LastName}",
-                EmailAddress = from.Customer.EmailAddress,
+                Customer = from.Customer,
+                EmailAddress = from.EmailAddress,
                 OrderNumber = from.CorrelationId,
-                OrderDate = from.CreatedOn.ToString("dd/MM/yyyy")
+                OrderDate = from.OrderDate,
+                Status = from.Status
             };
         }
 

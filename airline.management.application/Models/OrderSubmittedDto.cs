@@ -8,5 +8,6 @@ namespace airline.management.application.Models
         public string Customer { get; set; }
         public string EmailAddress { get; set; }        
         public string OrderDate { get; set; }
+        public string Status { get; set; }
     }
 }

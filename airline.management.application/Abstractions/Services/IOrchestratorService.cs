@@ -7,7 +7,7 @@ namespace airline.management.application.Abstractions.Services
 {
     public interface IOrchestratorService
     {
-        Task SubmitOrder(OrderSubmitEvent orderSubmitEvent, CancellationToken cancellationToken);
+        Task<OrderSubmittedEvent> SubmitOrder(OrderSubmitEvent orderSubmitEvent, CancellationToken cancellationToken);
         Task<OrderStateEvent> GetOrderState(Guid OrderNumber, CancellationToken cancellationToken);
     }
 }

@@ -11,20 +11,28 @@ using System.Threading.Tasks;
 namespace airline.management.infrastructure.Services
 {
     public class OrchestratorService : IOrchestratorService
-    {
-        private readonly IPublishEndpoint _publishEndpoint;
+    {        
         private IRequestClient<IOrderStateRequestEvent> _orderStateRequest;
-        
-        public OrchestratorService(IPublishEndpoint publishEndpoint, IRequestClient<IOrderStateRequestEvent> orderStateRequest)
-        {
-            _publishEndpoint = publishEndpoint;
+        private IRequestClient<IOrderSubmitEvent> _orderSubmitRequest;
+
+        public OrchestratorService(IRequestClient<IOrderStateRequestEvent> orderStateRequest, IRequestClient<IOrderSubmitEvent> orderSubmitRequest)
+        {     
             _orderStateRequest = orderStateRequest;
-        
+            _orderSubmitRequest = orderSubmitRequest;        
         }
 
-        public async Task SubmitOrder(OrderSubmitEvent orderSubmitEvent, CancellationToken cancellationToken)
+        public async Task<OrderSubmittedEvent> SubmitOrder(OrderSubmitEvent orderSubmitEvent, CancellationToken cancellationToken)
         {
-            await _publishEndpoint.Publish<IOrderSubmitEvent>(orderSubmitEvent, cancellationToken);
+            var response = await _orderSubmitRequest.GetResponse<IOrderSubmittedEvent>(orderSubmitEvent, cancellationToken);
+
+            return new OrderSubmittedEvent
+            {
+                CorrelationId = response.Message.CorrelationId,
+                Customer = response.Message.Customer,
+                EmailAddress = response.Message.EmailAddress,
+                OrderDate = response.Message.OrderDate,
+                Status = response.Message.Status
+            };
         }
 
         public async Task<OrderStateEvent> GetOrderState(Guid orderNumber, CancellationToken cancellationToken)

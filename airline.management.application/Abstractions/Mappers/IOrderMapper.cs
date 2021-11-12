@@ -6,7 +6,7 @@ using airline.management.sharedkernal.Abstractions;
 namespace airline.management.application.Abstractions.Mappers
 {
     public interface IOrderMapper : 
-        IMapper<OrderSubmitEvent, OrderSubmittedDto>, 
+        IMapper<OrderSubmittedEvent, OrderSubmittedDto>, 
         IMapper<SubmitOrderCommand, OrderSubmitEvent>, 
         IMapper<OrderStateEvent, OrderStateDto>
     { }

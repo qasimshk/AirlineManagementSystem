@@ -31,8 +31,8 @@ namespace airline.management.application.test.Commands
             var request = GetMockedData.GetSubmitOrderCommand();
             var cancellationTokenSource = new CancellationTokenSource();
 
-            _orderMapper.Map(Arg.Any<SubmitOrderCommand>()).Returns(GetMockedData.GetOrderSubmitEvent());
-            _orderMapper.Map(Arg.Any<OrderSubmitEvent>()).Returns(GetMockedData.GetOrderSubmittedDto());
+            //_orderMapper.Map(Arg.Any<SubmitOrderCommand>()).Returns(GetMockedData.GetOrderSubmitEvent());
+            _orderMapper.Map(Arg.Any<OrderSubmittedEvent>()).Returns(GetMockedData.GetOrderSubmittedDto());
 
             // Act
             var result = await _sut.Handle(request, cancellationTokenSource.Token);

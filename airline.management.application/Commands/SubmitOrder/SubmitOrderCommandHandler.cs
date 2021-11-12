@@ -22,9 +22,9 @@ namespace airline.management.application.Commands.SubmitOrder
         {
             var service = _orderMapper.Map(request);
 
-            await _orchestratorService.SubmitOrder(service, cancellationToken);
+            var response = await _orchestratorService.SubmitOrder(service, cancellationToken);
 
-            return _orderMapper.Map(service);
+            return _orderMapper.Map(response);
         }        
     }
 }
