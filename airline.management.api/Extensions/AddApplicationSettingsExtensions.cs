@@ -13,8 +13,7 @@ namespace airline.management.api.Extensions
     {
         public static IServiceCollection AddApplicationSettings(this IServiceCollection services, IConfiguration configuration, string applicationName)
         {
-            services.AddControllers(options =>
-                   options.Filters.Add<ApiExceptionFilterAttribute>())
+            services.AddControllers()
                .AddFluentValidation()
                .AddNewtonsoftJson();
 

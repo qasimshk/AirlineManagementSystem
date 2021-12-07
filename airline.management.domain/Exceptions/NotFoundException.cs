@@ -1,15 +1,7 @@
-﻿using System;
-
-namespace airline.management.domain.Exceptions
+﻿namespace airline.management.domain.Exceptions
 {
-    public class NotFoundException : Exception
+    public class NotFoundException : ApplicationException
     {
-        public NotFoundException() : base() { }
-
-        public NotFoundException(string message) : base(message) { }
-
-        public NotFoundException(string message, Exception innerException) : base(message, innerException) { }
-
-        public NotFoundException(string name, object key) : base($"Entity \"{name}\" ({key}) was not found.") { }
+        public NotFoundException(string message) : base("Not Found", message) { }
     }
 }

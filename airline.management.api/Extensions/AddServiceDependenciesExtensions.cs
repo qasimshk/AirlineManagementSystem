@@ -1,4 +1,5 @@
 ﻿using airline.management.api.Behaviours;
+using airline.management.api.Middlewares;
 using airline.management.application.Abstractions.BusinessProcess;
 using airline.management.application.Abstractions.Mappers;
 using airline.management.application.Abstractions.Services;
@@ -21,8 +22,9 @@ namespace airline.management.api.Extensions
             services.AddValidatorsFromAssembly(typeof(GetFlightByDestinationQueryValidator).GetTypeInfo().Assembly);
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddMediatR(typeof(GetCountriesQueryHandler).GetTypeInfo().Assembly);            
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+            services.AddMediatR(typeof(GetCountriesQueryHandler).GetTypeInfo().Assembly);
+
+            services.AddTransient<ExceptionHandlingMiddleware>();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             services.AddScoped<IOrchestratorService, OrchestratorService>();

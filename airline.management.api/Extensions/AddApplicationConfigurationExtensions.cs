@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using airline.management.api.Middlewares;
+using Microsoft.AspNetCore.Builder;
 
 namespace airline.management.api.Extensions
 {
@@ -6,6 +7,8 @@ namespace airline.management.api.Extensions
     {
         public static IApplicationBuilder AddApplicationConfiguration(this IApplicationBuilder applicationBuilder)
         {
+            applicationBuilder.UseMiddleware<ExceptionHandlingMiddleware>();
+
             applicationBuilder.UseHttpsRedirection();
 
             applicationBuilder.UseRouting();
