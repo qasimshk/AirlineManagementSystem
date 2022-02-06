@@ -42,6 +42,8 @@ namespace airline.management.api.Extensions
                 c.OperationFilter<AuthResponsesOperationFilter>();
             });
 
+            services.AddHealthChecks();
+
             return services;
         }
     }    
