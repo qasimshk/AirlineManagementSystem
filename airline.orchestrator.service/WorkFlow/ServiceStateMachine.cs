@@ -92,7 +92,7 @@ namespace airline.orchestrator.service.WorkFlow
                     .Then(context =>
                     {
                         context.Instance.PaymentId = context.Data.PaymentId.ToString();
-                        LogInformation("Payment received");
+                        LogInformation("Payment received & customer will be notified");
                     })
                     .Publish(context => new SendCustomerNotificationEvent(JsonConvert.DeserializeObject<OrderSubmitEvent>(context.Instance.JsonOrderRequest).Customer))
                     .TransitionTo(Completed));

@@ -1,50 +1,92 @@
 version: '3.4'
 
 services:
-  airline.management.api:
-    image: ${DOCKER_REGISTRY-}airlinemanagementapi
-    build:
-      context: .
-      dockerfile: airline.management.api/Dockerfile
+  #airline.management.api:
+  #  image: ${DOCKER_REGISTRY-}airlinemanagementapi
+  #  build:
+  #    context: .
+  #    dockerfile: airline.management.api/Dockerfile
+  #  ports:
+  #  - "8081:80"
+  #  #depends_on:
+  #  #- orchestrator.service
+  #  #- flightdetail.api    
+  #  environment:
+  #    - ServicesEndpoints__FlightDetailsURL=http://airline.flightdetail.api:8082/api/
+  #    - ConnectionStrings__DefaultConnection=Data Source=mssqlserver,1434;Initial Catalog=ServiceState;User Id=sa;Password=Password123; MultipleActiveResultSets=true
+  #    - ApplicationConfig__EventBusConnection=amqps://jetzodxo:amvZ5haqL0ODXks5pK6wfRG5ku1VEwQN@rattlesnake.rmq.cloudamqp.com/jetzodxo
 
-  airline.customers.service:
-    image: ${DOCKER_REGISTRY-}airlinecustomersservice
-    build:
-      context: .
-      dockerfile: airline.customers.service/Dockerfile
+  #customers.service:
+  #  image: ${DOCKER_REGISTRY-}airlinecustomersservice
+  #  build:
+  #    context: .
+  #    args:
+  #    - commandLineArgs=environment=Development
+  #    dockerfile: airline.customers.service/Dockerfile
+  #  environment:
 
-
-  airline.flightdetail.api:
+  flightdetail.api:
     image: ${DOCKER_REGISTRY-}airlineflightdetailapi
     build:
-      context: .
+      context: .      
       dockerfile: airline.flightdetail.api/Dockerfile
+    ports:
+    - "8082:80"
+    environment:
+    - ConnectionStrings__DefaultConnection=Data Source=mssqlserver,1433;Initial Catalog=FlightDetails;User Id=sa;Password=Password123; MultipleActiveResultSets=true
+
+  #notification.service:
+  #  image: ${DOCKER_REGISTRY-}airlinenotificationservice
+  #  build:
+  #    context: .
+  #    args:
+  #    - commandLineArgs=environment=Development
+  #    dockerfile: airline.notification.service/Dockerfile
+  #  environment:
 
 
-  airline.notification.service:
-    image: ${DOCKER_REGISTRY-}airlinenotificationservice
-    build:
-      context: .
-      dockerfile: airline.notification.service/Dockerfile
+  #orchestrator.service:
+  #  image: ${DOCKER_REGISTRY-}airlineorchestratorservice
+  #  build:
+  #    context: .
+  #    args:
+  #    - commandLineArgs=environment=Development
+  #    dockerfile: airline.orchestrator.service/Dockerfile
+  #  environment:
 
 
-  airline.orchestrator.service:
-    image: ${DOCKER_REGISTRY-}airlineorchestratorservice
-    build:
-      context: .
-      dockerfile: airline.orchestrator.service/Dockerfile
+  #orders.service:
+  #  image: ${DOCKER_REGISTRY-}airlineordersservice
+  #  build:
+  #    context: .
+  #    args:
+  #    - commandLineArgs=environment=Development
+  #    dockerfile: airline.orders.service/Dockerfile
+  #  environment:
 
 
-  airline.orders.service:
-    image: ${DOCKER_REGISTRY-}airlineordersservice
-    build:
-      context: .
-      dockerfile: airline.orders.service/Dockerfile
-
-
-  airline.payment.service:
-    image: ${DOCKER_REGISTRY-}airlinepaymentservice
-    build:
-      context: .
-      dockerfile: airline.payment.service/Dockerfile
-
+  #payment.service:
+  #  image: ${DOCKER_REGISTRY-}airlinepaymentservice
+  #  build:
+  #    context: .
+  #    args:
+  #    - commandLineArgs=environment=Development
+  #    dockerfile: airline.payment.service/Dockerfile
+  #  environment:
+   
+  rabbitMq:
+    image: rabbitmq:3-management    
+    ports: 
+    - "5672:5672"
+    - "4000:15672"
+    environment:
+    - RABBITMQ_DEFAULT_USER=demo
+    - RABBITMQ_DEFAULT_PASS=Password123
+  
+  mssqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest    
+    ports: 
+    - "1434:1433"    
+    environment:
+    - SA_PASSWORD=Password123
+    - ACCEPT_EULA=Y

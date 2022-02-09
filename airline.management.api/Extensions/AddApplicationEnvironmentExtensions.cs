@@ -11,9 +11,10 @@ namespace airline.management.api.Extensions
             if (env.IsDevelopment())
             {
                 applicationBuilder.UseDeveloperExceptionPage();
-                applicationBuilder.UseSwagger();
-                applicationBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", applicationName));
             }
+
+            applicationBuilder.UseSwagger();
+            applicationBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", applicationName));
 
             return applicationBuilder;
         }

@@ -32,7 +32,7 @@ namespace airline.flightdetail.api.Controllers
         [ProducesResponseType(typeof(FlightDetailsDto), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Search(string departure, string arrival)
         {
-            if(departure.Length > 3)
+            if (departure.Length > 3)
             {
                 return BadRequest("Invalid departure country ISO code");
             }
