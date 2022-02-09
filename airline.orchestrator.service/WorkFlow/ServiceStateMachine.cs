@@ -66,7 +66,7 @@ namespace airline.orchestrator.service.WorkFlow
                     When(CustomerProcessedSuccessfullyEvent)
                     .Then(context => {
                         context.Instance.CustomerId = context.Data.CustomerId.ToString();
-                        Console.WriteLine("--> Customer data processed");
+                        LogInformation("Customer data processed");
                     })
                     .Publish(context => new CreateFlightTicketEvent(JsonConvert.DeserializeObject<OrderSubmitEvent>(context.Instance.JsonOrderRequest).Ticket))
                     .TransitionTo(CustomerCreatedOrUpdated));
@@ -77,7 +77,7 @@ namespace airline.orchestrator.service.WorkFlow
                     {
                         context.Instance.OrderId = context.Data.OrderId.ToString();
                         context.Instance.TicketNumber = context.Data.TicketNumber;
-                        Console.WriteLine("--> Ticket created");
+                        LogInformation("Ticket created");
                     })
                     .Publish(context => new AddPaymentEvent
                     {
@@ -92,7 +92,7 @@ namespace airline.orchestrator.service.WorkFlow
                     .Then(context =>
                     {
                         context.Instance.PaymentId = context.Data.PaymentId.ToString();
-                        Console.WriteLine("--> Payment received");
+                        LogInformation("Payment received");
                     })
                     .Publish(context => new SendCustomerNotificationEvent(JsonConvert.DeserializeObject<OrderSubmitEvent>(context.Instance.JsonOrderRequest).Customer))
                     .TransitionTo(Completed));
@@ -103,7 +103,7 @@ namespace airline.orchestrator.service.WorkFlow
                     {
                         context.Instance.FailedOn = DateTime.Now;
                         context.Instance.ErrorMessage = context.Data.ErrorMessage;
-                        Console.WriteLine($"--> Process failed on {context.Data.ConsumerName}");
+                        LogError($"Process failed on {context.Data.ConsumerName}");
                     })
                     .TransitionTo(Failed),
 
@@ -124,8 +124,8 @@ namespace airline.orchestrator.service.WorkFlow
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-            }            
+                LogError(ex.Message);
+            }
         }
 
         #region State
@@ -149,5 +149,19 @@ namespace airline.orchestrator.service.WorkFlow
         private Event<IOrderStateRequestEvent> OrderStateRequestEvent { get; set; }
 
         #endregion
-    }  
+
+        public void LogInformation(string message)
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Info: {message}");
+        }
+
+        public void LogError(string message)
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Error: {message}");
+        }
+    }
 }
