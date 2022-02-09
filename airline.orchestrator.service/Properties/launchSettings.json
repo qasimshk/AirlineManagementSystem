@@ -4,6 +4,9 @@
       "commandName": "Project",
       "commandLineArgs": "environment=Development",
       "dotnetRunMessages": "true"
+    },
+    "Docker": {
+      "commandName": "Docker"
     }
   }
 }

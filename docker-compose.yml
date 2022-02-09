@@ -1,0 +1,50 @@
+version: '3.4'
+
+services:
+  airline.management.api:
+    image: ${DOCKER_REGISTRY-}airlinemanagementapi
+    build:
+      context: .
+      dockerfile: airline.management.api/Dockerfile
+
+  airline.customers.service:
+    image: ${DOCKER_REGISTRY-}airlinecustomersservice
+    build:
+      context: .
+      dockerfile: airline.customers.service/Dockerfile
+
+
+  airline.flightdetail.api:
+    image: ${DOCKER_REGISTRY-}airlineflightdetailapi
+    build:
+      context: .
+      dockerfile: airline.flightdetail.api/Dockerfile
+
+
+  airline.notification.service:
+    image: ${DOCKER_REGISTRY-}airlinenotificationservice
+    build:
+      context: .
+      dockerfile: airline.notification.service/Dockerfile
+
+
+  airline.orchestrator.service:
+    image: ${DOCKER_REGISTRY-}airlineorchestratorservice
+    build:
+      context: .
+      dockerfile: airline.orchestrator.service/Dockerfile
+
+
+  airline.orders.service:
+    image: ${DOCKER_REGISTRY-}airlineordersservice
+    build:
+      context: .
+      dockerfile: airline.orders.service/Dockerfile
+
+
+  airline.payment.service:
+    image: ${DOCKER_REGISTRY-}airlinepaymentservice
+    build:
+      context: .
+      dockerfile: airline.payment.service/Dockerfile
+

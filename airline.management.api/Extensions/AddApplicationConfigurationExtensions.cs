@@ -19,7 +19,8 @@ namespace airline.management.api.Extensions
 
             applicationBuilder.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers();                
+                endpoints.MapHealthChecks("/healthcheck");
             });
 
             return applicationBuilder;
