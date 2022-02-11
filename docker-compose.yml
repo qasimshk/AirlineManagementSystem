@@ -123,9 +123,8 @@ services:
     container_name: MsSqlServer
     ports: 
       - "1434:1433"   
-    #volumes:
-    # - mssqlserver:/var/opt/mssql
-    #  - sqlvolume:/var/opt/mssql
+    volumes:
+     - mssqlserver:/var/opt/mssql     
     environment:
       - SA_PASSWORD=Password123
       - ACCEPT_EULA=Y
@@ -136,3 +135,5 @@ services:
       #- /bin/sh -c "(/opt/mssql/bin/sqlservr &) && sleep 10s && /opt/mssql-tools/bin/sqlcmd -S mssqlserver,1433 -U sa -P Password123 -d master -i Customers.sql"
       #- /bin/sh -c "(/opt/mssql/bin/sqlservr &) && sleep 10s && /opt/mssql-tools/bin/sqlcmd -S mssqlserver,1433 -U sa -P Password123 -d master -i Customers.sql"
       #- /bin/sh -c "(/opt/mssql/bin/sqlservr &) && sleep 10s && /opt/mssql-tools/bin/sqlcmd -S mssqlserver,1433 -U sa -P Password123 -d master -i Customers.sql"
+volumes:
+  mssqlserver:
