@@ -38,8 +38,7 @@ docker-compose up -d
 ### How to install:
 - Install [.Net 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) on the pc if required.
 - Open solution in Visual Studio 2019.
-- Create six databases in SQL server by these names: Customers, FlightDetails, ServiceState, Orders, Gateway & Payments
-- Navigate to the project opened in visual studio and expand the database folder to publish all six SQL projects one by one to create the schema in all six databases. Please make sure that the database project is pointing to the current database referenced by its name.
+- Navigate to the project opened in visual studio and expand the database folder open seeds folder and execute all three scripts files one by one to setup all six databases.
 - Open seeds folder and execute the query file in flight details database in SQL server.
 - For message bus, AMQP URL is required if you do not have rabbitMq installed on your local system then follow steps mentioned with alphabetical prefix.
 > a) Open [Cloud AMQP](https://www.cloudamqp.com/) in the browser.
