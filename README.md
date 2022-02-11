@@ -4,6 +4,31 @@
 
 The airline management system project is developed to explain the concept of orchestration microservice patterns. As the name says this orchestrator service is responsible for the workflow of each asynchronous transaction. The payload sent by the gateway API is stored in the database and an entry is created. The created entry state is updated on each successful response sent by the consuming microservices. 
 
+### Run in docker
+To run applciation in docker use below mentioned commands. Make sure to create all the databases using script files in seeds folder, for the first time. Use [http://localhost:8081/swagger/index.html](http://localhost:8081/swagger/index.html) to access it.
+```
+docker-compose up -d
+```
+
+#### Registration
+```javascript
+{
+  "email": "test@example.com",
+  "password": "Password123!"
+}
+```
+
+#### Book ticket
+```javascript
+{
+  "flightNumber": "XCF123",
+  "departureDate": "2022-10-28",
+  "firstName": "Jay",
+  "lastName": "Cutler",
+  "emailAddress": "test@example.com"
+}
+```
+
 ### Build Status 
 
 | Service | Status |
