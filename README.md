@@ -37,7 +37,7 @@ docker-compose up -d
 
 ### How to install:
 - Install [.Net 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) on the pc if required.
-- Open solution in Visual Studio 2019.
+- Open solution in Visual Studio.
 - Navigate to the project opened in visual studio and expand the database folder open seeds folder and execute all three scripts files one by one to setup all six databases.
 - Open seeds folder and execute the query file in flight details database in SQL server.
 - For message bus, AMQP URL is required if you do not have rabbitMq installed on your local system then follow steps mentioned with alphabetical prefix.
