@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace airline.payment.service
 {
@@ -29,7 +30,10 @@ namespace airline.payment.service
                 {
                     cfg.SetBasePath(Directory.GetCurrentDirectory());
                     cfg.AddJsonFile("appsettings.json", true, true);
-                    cfg.AddJsonFile($"appsettings.{GlobalMethods.GetValueByKey(args, "environment")}.json", true, true);
+                    if (args.Any())
+                    {
+                        cfg.AddJsonFile($"appsettings.{GlobalMethods.GetValueByKey(args, "environment")}.json", true, true);
+                    }
                     cfg.AddEnvironmentVariables().Build();
                 })
                 .ConfigureServices((hostContext, services) =>
@@ -37,7 +41,7 @@ namespace airline.payment.service
                     services
                         .AddServiceConfiguration(hostContext.Configuration)
                         .AddApplicationDbContext<PaymentDbContext>(hostContext.Configuration)
-                        .AddEventBusService(hostContext.Configuration)
+                        .AddEventBusService()
                         .AddServiceDependencies()
                         .AddHostedService<Worker>();
                 });

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace airline.orchestrator.service
 {
@@ -28,7 +29,10 @@ namespace airline.orchestrator.service
                  {
                      cfg.SetBasePath(Directory.GetCurrentDirectory());
                      cfg.AddJsonFile("appsettings.json", true, true);
-                     cfg.AddJsonFile($"appsettings.{GlobalMethods.GetValueByKey(args, "environment")}.json", true, true);
+                     if (args.Any())
+                     {
+                         cfg.AddJsonFile($"appsettings.{GlobalMethods.GetValueByKey(args, "environment")}.json", true, true);
+                     }
                      cfg.AddEnvironmentVariables().Build();
                  })
                 .ConfigureServices((hostContext, services) =>

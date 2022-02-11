@@ -35,7 +35,7 @@ namespace airline.orchestrator.service.WorkFlow
                         {
                             await context.RespondAsync<IOrderNotFoundEvent>(new
                             {
-                                CorrelationId = context.Message.CorrelationId
+                                context.Message.CorrelationId
                             });
                         }
                     }));
@@ -150,14 +150,14 @@ namespace airline.orchestrator.service.WorkFlow
 
         #endregion
 
-        public void LogInformation(string message)
+        public static void LogInformation(string message)
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Info: {message}");
         }
 
-        public void LogError(string message)
+        public static void LogError(string message)
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Red;

@@ -3,7 +3,6 @@ using airline.management.sharedkernal.Configurations;
 using airline.management.sharedkernal.Extensions;
 using MassTransit;
 using MassTransit.Definition;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
@@ -12,7 +11,7 @@ namespace airline.customers.service.Extensions
 {
     public static class AddEventBusServiceExtensions
     {
-        public static IServiceCollection AddEventBusService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddEventBusService(this IServiceCollection services)
         {
             var appConfig = services.BuildServiceProvider().GetRequiredService<IOptions<ApplicationConfig>>().Value;
 
@@ -22,7 +21,7 @@ namespace airline.customers.service.Extensions
             {
                 cfg.AddConsumersFromNamespaceContaining<CustomerConsumer>();
 
-                cfg.AddBusConfigurator(appConfig.EventBusConnection);                
+                cfg.AddBusConfigurator(appConfig);                
             });
 
             services.AddMassTransitHostedService();

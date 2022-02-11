@@ -26,7 +26,7 @@ namespace airline.management.api.Extensions
 
                 cfg.SetKebabCaseEndpointNameFormatter();
 
-                cfg.AddBusConfigurator(appConfig.EventBusConnection);
+                cfg.AddBusConfigurator(appConfig);
 
                 cfg.AddRequestClient<IOrderStateRequestEvent>();
 

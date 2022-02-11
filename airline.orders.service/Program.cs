@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using airline.orders.service.Extensions;
 using airline.orders.service.Persistence.Context;
+using System.Linq;
 
 namespace airline.orders.service
 {
@@ -29,7 +30,10 @@ namespace airline.orders.service
                 {
                     cfg.SetBasePath(Directory.GetCurrentDirectory());
                     cfg.AddJsonFile("appsettings.json", true, true);
-                    cfg.AddJsonFile($"appsettings.{GlobalMethods.GetValueByKey(args, "environment")}.json", true, true);
+                    if (args.Any())
+                    {
+                        cfg.AddJsonFile($"appsettings.{GlobalMethods.GetValueByKey(args, "environment")}.json", true, true);
+                    }
                     cfg.AddEnvironmentVariables().Build();
                 })
                 .ConfigureServices((hostContext, services) =>
@@ -37,7 +41,7 @@ namespace airline.orders.service
                     services
                         .AddServiceConfiguration(hostContext.Configuration)
                         .AddApplicationDbContext<OrderDbContext>(hostContext.Configuration)
-                        .AddEventBusService(hostContext.Configuration)
+                        .AddEventBusService()
                         .AddServiceDependencies()
                         .AddHostedService<Worker>();
                 });

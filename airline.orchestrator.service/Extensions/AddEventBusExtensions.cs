@@ -37,7 +37,7 @@ namespace airline.orchestrator.service.Extensions
                         });
                     });
 
-                cfg.AddBusConfigurator(appConfig.EventBusConnection);
+                cfg.AddBusConfigurator(appConfig);
             });
 
             return services;

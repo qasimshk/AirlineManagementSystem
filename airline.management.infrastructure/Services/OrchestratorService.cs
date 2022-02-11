@@ -12,8 +12,8 @@ namespace airline.management.infrastructure.Services
 {
     public class OrchestratorService : IOrchestratorService
     {        
-        private IRequestClient<IOrderStateRequestEvent> _orderStateRequest;
-        private IRequestClient<IOrderSubmitEvent> _orderSubmitRequest;
+        private readonly IRequestClient<IOrderStateRequestEvent> _orderStateRequest;
+        private readonly IRequestClient<IOrderSubmitEvent> _orderSubmitRequest;
 
         public OrchestratorService(IRequestClient<IOrderStateRequestEvent> orderStateRequest, IRequestClient<IOrderSubmitEvent> orderSubmitRequest)
         {     

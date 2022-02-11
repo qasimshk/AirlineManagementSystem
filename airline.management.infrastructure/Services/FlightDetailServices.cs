@@ -10,7 +10,7 @@ namespace airline.management.infrastructure.Services
 {
     public class FlightDetailServices : IFlightDetailServices
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         public FlightDetailServices(HttpClient httpClient)
         {
