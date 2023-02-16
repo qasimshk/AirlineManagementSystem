@@ -21,7 +21,7 @@ xUnit and NUnit are both popular open-source unit testing frameworks for .NET. B
 Overall, both xUnit and NUnit are great options for writing and running automated tests in .NET. Developers should choose the framework that best fits their needs based on factors such as test execution model, test runner, attributes and assertions, test parallelism, and test data.
 
 
-### Advantages of using orchestrator pattern vs choreography patter in microservice architecture 
+### Orchestrator vs Choreography patters in microservice architecture 
 Both the Orchestrator and Choreography patterns are used in Microservices architecture to coordinate the interactions between services. Here are some advantages of using each pattern:
 
 **Advantages of Orchestrator Pattern:**
