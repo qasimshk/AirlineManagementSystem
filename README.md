@@ -2,20 +2,21 @@
 
 ![](https://github.com/qasimshk/AirlineManagementSystem/blob/master/System%20Design.png)
 
+### Introduction
 The airline management system project is developed to explain the concept of orchestration microservice patterns. As the name says this orchestrator service is responsible for the workflow of each asynchronous transaction. The payload sent by the gateway API is stored in the database and an entry is created. The created entry state is updated on each successful response sent by the consuming microservices. 
 
-### XUnit vs NUnit comparision
+### xUnit vs NUnit comparision
 xUnit and NUnit are both popular open-source unit testing frameworks for .NET. Both frameworks provide similar functionality and are designed to help developers write and run automated tests, but there are some differences between them. Here are some key differences between xUnit and NUnit:
 
-- Test Execution Model: xUnit follows a more modern and intuitive test execution model than NUnit. NUnit uses the TestFixture attribute to define a group of test methods, while xUnit uses the class itself to represent a test fixture. xUnit also uses a more intuitive naming convention for test methods, as it requires the method name to describe the expected behavior.
+- **Test Execution Model:** xUnit follows a more modern and intuitive test execution model than NUnit. NUnit uses the TestFixture attribute to define a group of test methods, while xUnit uses the class itself to represent a test fixture. xUnit also uses a more intuitive naming convention for test methods, as it requires the method name to describe the expected behavior.
 
-- Test Runner: xUnit has a built-in test runner, while NUnit requires a separate test runner tool to be installed. The xUnit test runner is fast, reliable, and can be easily integrated into Visual Studio or other development environments.
+- **Test Runner:** xUnit has a built-in test runner, while NUnit requires a separate test runner tool to be installed. The xUnit test runner is fast, reliable, and can be easily integrated into Visual Studio or other development environments.
 
-- Attributes and Assertions: xUnit provides a simpler and more streamlined set of attributes and assertions compared to NUnit. xUnit includes a smaller set of attributes and assertions, which can help to reduce the learning curve for developers who are new to the framework.
+- **Attributes and Assertions:** xUnit provides a simpler and more streamlined set of attributes and assertions compared to NUnit. xUnit includes a smaller set of attributes and assertions, which can help to reduce the learning curve for developers who are new to the framework.
 
-- Test Parallelism: xUnit provides built-in support for running tests in parallel, which can help to reduce the time it takes to run large test suites. NUnit also supports parallel testing, but it requires additional configuration.
+- **Test Parallelism:** xUnit provides built-in support for running tests in parallel, which can help to reduce the time it takes to run large test suites. NUnit also supports parallel testing, but it requires additional configuration.
 
-- Test Data: xUnit provides a more flexible and extensible way to provide test data using data-driven tests. NUnit provides a similar feature, but xUnit's data-driven tests are more flexible and easier to use.
+- **Test Data:** xUnit provides a more flexible and extensible way to provide test data using data-driven tests. NUnit provides a similar feature, but xUnit's data-driven tests are more flexible and easier to use.
 
 Overall, both xUnit and NUnit are great options for writing and running automated tests in .NET. Developers should choose the framework that best fits their needs based on factors such as test execution model, test runner, attributes and assertions, test parallelism, and test data.
 
