@@ -4,6 +4,7 @@ using airline.orders.service.Entities;
 using airline.orders.service.Events;
 using airline.orders.service.Persistence.Repositories.Abstractions;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,18 +14,20 @@ namespace airline.orders.service.Consumers
     public class TicketConsumer : IConsumer<ICreateFlightTicketEvent>
     {
         private readonly ITicketRepository _ticketRepository;
+        private readonly ILogger<TicketConsumer> _logger;
 
-        public TicketConsumer(ITicketRepository ticketRepository)
+        public TicketConsumer(ITicketRepository ticketRepository, ILogger<TicketConsumer> logger)
         {
             _ticketRepository = ticketRepository;
+            _logger = logger;
         }
 
         public async Task Consume(ConsumeContext<ICreateFlightTicketEvent> context)
         {
             try
             {
-                Console.WriteLine("--> Ticket details received");
-
+                _logger.LogInformation("Ticket details received");
+                
                 var entity = new Tickets
                 {
                     ArrivalAirport = context.Message.ArrivalAirport,
@@ -43,7 +46,7 @@ namespace airline.orders.service.Consumers
 
                 await _ticketRepository.UnitOfWork.SaveEntitiesAsync();
 
-                Console.WriteLine("--> ticket created successfully");
+                _logger.LogInformation("Ticket created received");                
 
                 var ticket = await _ticketRepository.FindByConditionAsync(x => x.CorrelationId == context.Message.CorrelationId);
 
@@ -56,8 +59,8 @@ namespace airline.orders.service.Consumers
             }
             catch(Exception ex)
             {
-                Console.WriteLine("--> Service was not able to create ticket");
-
+                _logger.LogError("Service was not able to create ticket");
+                
                 await context.RespondAsync<IFailedEvent>(new FailedEvent
                 {
                     ConsumerName = nameof(TicketConsumer),

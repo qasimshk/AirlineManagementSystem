@@ -4,6 +4,7 @@ using airline.customers.service.Persistence.Repositories.Abstractions;
 using airline.management.abstractions.Customers;
 using airline.management.abstractions.Failed;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,18 +14,20 @@ namespace airline.customers.service.Consumers
     public class CustomerConsumer : IConsumer<ICreateOrUpdateCustomerEvent>
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly ILogger<CustomerConsumer> _logger;
 
-        public CustomerConsumer(ICustomerRepository customerRepository)
+        public CustomerConsumer(ICustomerRepository customerRepository, ILogger<CustomerConsumer> logger)
         {
             _customerRepository = customerRepository;
+            _logger = logger;
         }
 
         public async Task Consume(ConsumeContext<ICreateOrUpdateCustomerEvent> context)
         {
             try
             {
-                Console.WriteLine("--> Customer event received");
-
+                _logger.LogInformation("Customer event received");
+                
                 var entity = new Customers
                 {
                     CorrelationId = context.Message.CorrelationId,
@@ -54,8 +57,7 @@ namespace airline.customers.service.Consumers
                 }
                                 
                 await _customerRepository.UnitOfWork.SaveEntitiesAsync();
-
-                Console.WriteLine("--> Customer record processed successfully");
+                _logger.LogInformation("Customer record processed successfully");
 
                 await context.RespondAsync<ICustomerProcessedSuccessfullyEvent>(new CustomerProcessedSuccessfullyEvent
                 {
@@ -65,7 +67,7 @@ namespace airline.customers.service.Consumers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("--> Service was not able to save customer details");
+                _logger.LogError("Service was not able to save customer details");                
 
                 await context.RespondAsync<IFailedEvent>(new FailedEvent
                 {

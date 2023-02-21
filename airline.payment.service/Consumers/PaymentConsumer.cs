@@ -4,6 +4,7 @@ using airline.payment.service.Entities;
 using airline.payment.service.Events;
 using airline.payment.service.Persistence.Repositories.Abstractions;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,18 +14,20 @@ namespace airline.payment.service.Consumers
     public class PaymentConsumer : IConsumer<IAddPaymentEvent>
     {
         private readonly ITransactionRepository _transactionRepository;
+        private readonly ILogger<PaymentConsumer> _logger;
 
-        public PaymentConsumer(ITransactionRepository transactionRepository)
+        public PaymentConsumer(ITransactionRepository transactionRepository, ILogger<PaymentConsumer> logger)
         {
             _transactionRepository = transactionRepository;
+            _logger = logger;
         }
 
         public async Task Consume(ConsumeContext<IAddPaymentEvent> context)
         {
             try
             {
-                Console.WriteLine("--> Payment event received");
-
+                _logger.LogInformation("Payment event received");
+                
                 var entity = new Transactions                 
                 { 
                     Amount = context.Message.Amount,
@@ -37,8 +40,8 @@ namespace airline.payment.service.Consumers
 
                 await _transactionRepository.UnitOfWork.SaveEntitiesAsync();
 
-                Console.WriteLine("--> Payment record processed successfully");
-
+                _logger.LogInformation("Payment record processed successfully");
+                
                 var transaction = await _transactionRepository.FindByConditionAsync(x => x.OrderId == context.Message.OrderId);
 
                 await context.RespondAsync<IPaymentProcessedSuccessfullyEvent>(new PaymentProcessedSuccessfully
@@ -49,8 +52,8 @@ namespace airline.payment.service.Consumers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("--> Service was not able to save Payment details");
-
+                _logger.LogError("Service was not able to save Payment details");
+                
                 await context.RespondAsync<IFailedEvent>(new FailedEvent
                 {
                     ConsumerName = nameof(PaymentConsumer),
