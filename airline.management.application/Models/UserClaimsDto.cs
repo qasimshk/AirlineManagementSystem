@@ -8,6 +8,7 @@ namespace airline.management.application.Models
         public Guid UserId { get; set; }
         public string EmailAddress { get; set; }
         public bool Success { get; set; }
+        public string Role { get; set; }
         public List<string> Errors { get; set; }
     }
 }

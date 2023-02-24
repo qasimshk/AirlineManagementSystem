@@ -48,7 +48,8 @@ namespace airline.management.infrastructure.BusinessProcess
                     new Claim("Id", user.Id),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Role, "Manager")
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(_jwtConfig.ExpiryInMinutes),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
@@ -105,7 +106,8 @@ namespace airline.management.infrastructure.BusinessProcess
                 {
                     EmailAddress = userClaims.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email).Value,
                     UserId = Guid.Parse(userClaims.Claims.FirstOrDefault(x => x.Type == "Id").Value),
-                    Success = true
+                    Success = true,
+                    Role = userClaims.Claims.FirstOrDefault(x => x.Type == "role").Value
                 };
             }
             catch
@@ -144,7 +146,7 @@ namespace airline.management.infrastructure.BusinessProcess
                 // Validation 2 - Validate encryption alg
                 if (validatedToken is JwtSecurityToken jwtSecurityToken)
                 {
-                    var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
+                    var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature, StringComparison.InvariantCultureIgnoreCase);
 
                     if (result == false)
                     {
