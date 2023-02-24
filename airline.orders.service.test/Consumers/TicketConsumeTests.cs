@@ -7,6 +7,7 @@ using FluentAssertions;
 using MassTransit;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,12 @@ namespace airline.orders.service.test.Consumers
     public class TicketConsumeTests
     {
         private readonly ITicketRepository _ticketRepository;
+        private readonly ILogger<TicketConsumer> _logger;
 
         public TicketConsumeTests()
         {
             _ticketRepository = Substitute.For<ITicketRepository>();
+            _logger = Substitute.For<ILogger<TicketConsumer>>();
         }
 
         [Fact]
@@ -39,6 +42,7 @@ namespace airline.orders.service.test.Consumers
                 cfg.AddConsumerTestHarness<TicketConsumer>();
             })
             .AddScoped(x => _ticketRepository)
+            .AddScoped(x => _logger)
             .BuildServiceProvider(true);
 
             _ticketRepository.FindByConditionAsync(Arg.Any<Expression<Func<Tickets, bool>>>()).Returns(tickets);
