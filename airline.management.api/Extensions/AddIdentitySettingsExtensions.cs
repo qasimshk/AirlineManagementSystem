@@ -48,6 +48,7 @@ namespace airline.management.api.Extensions
                 jwt.TokenValidationParameters = tokenValidationParams;
             });
 
+            // https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
             services.AddAuthorization(options => 
             {
                 options.AddPolicy("UserPermission", o => 
