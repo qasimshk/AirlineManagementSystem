@@ -18,6 +18,7 @@ namespace airline.management.api.Controllers
     public class FlightController : BaseController
     {
         [HttpGet("Countries")]
+        [Authorize(Policy = "UserPermission")]
         [ProducesResponseType(typeof(List<CountryDetailsDto>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Countries()
         {

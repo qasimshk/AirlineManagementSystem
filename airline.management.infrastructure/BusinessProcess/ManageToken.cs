@@ -49,7 +49,8 @@ namespace airline.management.infrastructure.BusinessProcess
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(ClaimTypes.Role, "Manager")
+                    new Claim(ClaimTypes.Role, "Manager"),
+                    new Claim("Nature", "Innocent")
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(_jwtConfig.ExpiryInMinutes),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
