@@ -15,6 +15,7 @@ namespace airline.management.api.Controllers
     public class AccountController : BaseController
     {
         [HttpPost("Register")]
+        [Consumes("application/json")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(RegistrationResponseDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
