@@ -1,8 +1,5 @@
-using airline.customers.service.Persistence.Context;
 using airline.management.sharedkernal.Extensions;
-using airline.orchestrator.service.Persistence.Context;
-using airline.orders.service.Persistence.Context;
-using airline.payment.service.Persistence.Context;
+using database.migration.app.Persistance.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,8 +37,8 @@ namespace database.migration.app
             // Orders
             //services.AddApplicationDbContext<OrderDbContext>(Configuration);
 
-            // Payments
-            services.AddApplicationDbContext<PaymentDbContext>(Configuration);
+            // RST
+            services.AddApplicationDbContext<RestaurantDbContext>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
