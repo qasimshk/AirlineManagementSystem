@@ -17,8 +17,10 @@ namespace SendGridPOC
 
             builder.Services.AddSendGrid(options =>
             {
-                options.ApiKey = "";                
+                options.ApiKey = "";
             });
+
+
 
             var app = builder.Build();
 

@@ -15,6 +15,16 @@ namespace SendGridPOC.Controllers
             _sendGridClient = sendGridClient;
         }
 
+        [HttpGet(Name = "GetAddressDetails")]
+        public async Task<IActionResult> GoogleOne()
+        {
+            string address = "222A+Green+St,+London+E7+8LE+UK";
+
+
+
+            return Ok();
+        }
+
         [HttpGet(Name = "GetWeatherForecast")]
         public async Task<IActionResult> Notify()
         {
@@ -34,14 +44,13 @@ namespace SendGridPOC.Controllers
 
             var from = new EmailAddress("savvysavingsapp@gmail.com", "Savvy Savings");
             var to = new EmailAddress("ins_sheikh@hotmail.com", "Qasim Sheikh");
-            var templateId = "d-fab626068ad44cbba17783d8d42258e2";
+            var templateId = "d-580091f3a6a4452a9b6482716cf8a23e";
             var dynamicTemplateData = new
             {
-                //subject = $"To-Do List for {DateTime.UtcNow:MMMM}",
-                Sender_Name = "Qasim",
-                Weblink = "https://www.google.co.uk/",
-                email = "abc@abc.com"
-
+                subject = $"To-Do List for {DateTime.UtcNow:MMMM}",
+                storeOwnerName = "Qasim",
+                confirmationUrl = "https://www.google.co.uk/",
+                //emailAddress = "abc@abc.com"
             };
             var msg = MailHelper.CreateSingleTemplateEmail(from, to, templateId, dynamicTemplateData);
 
