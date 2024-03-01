@@ -91,10 +91,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.flightdetail.api.te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "airline.management.api.test", "airline.management.api.test\airline.management.api.test.csproj", "{6A1B1C65-D005-4DAD-A940-AEF52A25EAF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleFile", "GoogleFile\GoogleFile.csproj", "{EDD4ADA0-E367-47B2-B72D-2EF6B55484AF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendGridPOC", "SendGridPOC\SendGridPOC.csproj", "{3C8EF589-8B22-403C-BE5B-7FEBE6506984}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,14 +181,6 @@ Global
 		{6A1B1C65-D005-4DAD-A940-AEF52A25EAF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A1B1C65-D005-4DAD-A940-AEF52A25EAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A1B1C65-D005-4DAD-A940-AEF52A25EAF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDD4ADA0-E367-47B2-B72D-2EF6B55484AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDD4ADA0-E367-47B2-B72D-2EF6B55484AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDD4ADA0-E367-47B2-B72D-2EF6B55484AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDD4ADA0-E367-47B2-B72D-2EF6B55484AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C8EF589-8B22-403C-BE5B-7FEBE6506984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C8EF589-8B22-403C-BE5B-7FEBE6506984}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C8EF589-8B22-403C-BE5B-7FEBE6506984}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C8EF589-8B22-403C-BE5B-7FEBE6506984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -234,8 +222,6 @@ Global
 		{D63BF024-C5C7-45D0-AF56-2FC7BBA855B3} = {3F8C8585-29D1-4892-9FBB-C92A1CC21171}
 		{7A3291D9-72DC-4D0D-8160-BA05E422C544} = {D63BF024-C5C7-45D0-AF56-2FC7BBA855B3}
 		{6A1B1C65-D005-4DAD-A940-AEF52A25EAF6} = {1EF08978-5E59-4722-ACDB-E0A14246D74A}
-		{EDD4ADA0-E367-47B2-B72D-2EF6B55484AF} = {F54AF58A-50CC-4895-9510-9B0A776DCD8E}
-		{3C8EF589-8B22-403C-BE5B-7FEBE6506984} = {F54AF58A-50CC-4895-9510-9B0A776DCD8E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DDD445B-D2D3-4747-B048-F5E985150EEE}
