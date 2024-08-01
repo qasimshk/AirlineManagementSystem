@@ -57,6 +57,7 @@ However, implementing CQRS can introduce additional complexity to a system, as i
 
 Overall, CQRS is a powerful pattern that can be used to improve the performance, scalability, and flexibility of a system, particularly in cases where read and write operations have different requirements.
 
+<a href="https://buymeacoffee.com/cematix" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ### Run in docker
 To run application in docker use below mentioned command. Make sure to create all the databases using script files in seeds folder, for the first time. Use [http://localhost:8081/swagger/index.html](http://localhost:8081/swagger/index.html) to access it.
